@@ -5,7 +5,7 @@
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  */
-package org.opensearch.tasks;
+package org.opensearch.tasks.handler;
 
 import org.opensearch.action.delete.DeleteRequest;
 import org.opensearch.action.get.GetRequest;
