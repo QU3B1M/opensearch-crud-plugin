@@ -34,10 +34,10 @@ This plugin is a simple CRUD plugin for OpenSearch. It provides endpoints to cre
 
 The plugin is composed of the following components:
 
-- **action:** Contains the REST actions for each CRUD operation.
-- **handler:** Contains the handler for the REST actions.
-- **model:** Contains the model for the task.
-- **TasksPlugin:** The main plugin class.
+- **action:** Contains the REST actions for each CRUD operation. _Classes that returns the correspondent OpenSearch rest objects._
+- **handler:** Contains the handler for the REST actions. _A class that inherits from BaseRestHandler._
+- **model:** Contains the model for the task. _A class that implements the OpenSearch's ToXContent interface._
+- **TasksPlugin:** The main plugin class. _It inherits from OpenSearch's Plugin and implements ActionPlugin._
 - **test:** Contains the integration and unit tests for the plugin.
 - **yamlRestTest:** Contains the API test suite on YAML for the plugin.
   - **rest-api-spec.api:** Contains the API definition for each CRUD operation.
