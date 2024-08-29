@@ -22,21 +22,32 @@ import java.util.function.Supplier;
 
 import static java.util.Collections.singletonList;
 
-// The ActionPlugin interface is used to register the REST endpoints
-
+/**
+ * The TasksPlugin class registers REST endpoints for OpenSearch.
+ */
 public class TasksPlugin extends Plugin implements ActionPlugin  {
     // Implement the relevant Plugin Interfaces here
-    
-    static public final String TASK_INDEX = "tasks";
 
+    /**
+     * Registers REST handlers.
+     *
+     * @param settings OpenSearch settings
+     * @param restController REST controller
+     * @param clusterSettings Cluster settings
+     * @param indexScopedSettings Index scoped settings
+     * @param settingsFilter Settings filter
+     * @param indexNameExpressionResolver Index name expression resolver
+     * @param nodesInCluster Supplier for nodes in cluster
+     * @return List of REST handlers
+     */
     @Override
     public List<RestHandler> getRestHandlers(final Settings settings,
-                                            final RestController restController,
-                                            final ClusterSettings clusterSettings,
-                                            final IndexScopedSettings indexScopedSettings,
-                                            final SettingsFilter settingsFilter,
-                                            final IndexNameExpressionResolver indexNameExpressionResolver,
-                                            final Supplier nodesInCluster) {
-        return singletonList(new RestTaskAction());
+                                             final RestController restController,
+                                             final ClusterSettings clusterSettings,
+                                             final IndexScopedSettings indexScopedSettings,
+                                             final SettingsFilter settingsFilter,
+                                             final IndexNameExpressionResolver indexNameExpressionResolver,
+                                             final Supplier nodesInCluster) {
+        return singletonList(new RestTaskHandler());
     }
 }
