@@ -1,0 +1,18 @@
+"Test task read - Existent task":
+  - do:
+      _plugins.tasks_create:
+        body: { title: test }
+
+  - do:
+      _plugins.tasks_read:
+        id: test
+  - match: { found: true }
+
+---
+
+"Test task read - Non-existent task":
+  - do:
+      _plugins.tasks_read:
+        id: test
+        ignore: 404
+  - match: { status: 404 }

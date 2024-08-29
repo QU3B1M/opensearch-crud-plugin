@@ -52,34 +52,16 @@ public class Task implements ToXContentObject  {
     public Task() {}
 
     /**
-     * Constructor with title.
-     * @param title The title of the task.
-     */
-    public Task(String title) {
-        this(title, "");
-    }
-
-    /**
-     * Constructor with title and description.
-     * @param title The title of the task.
-     * @param description The description of the task.
-     */
-    public Task(String title, String description) {
-        this(title, description, TaskStatus.PENDING);
-    }
-
-    /**
      * Constructor with title, description, and status.
      * @param title The title of the task.
-     * @param description The description of the task.
-     * @param status The status of the task.
+     * @param description The description of the task. Default is empty string.
+     * @param status The status of the task. Default is PENDING.
      */
     public Task(String title, String description, TaskStatus status) {
         this.title = title;
-        this.description = description;
-        this.status = status;
+        this.description = description != null ? description : "";
+        this.status = status != null ? status : TaskStatus.PENDING;
     }
-
 
     /**
      * Copy constructor.

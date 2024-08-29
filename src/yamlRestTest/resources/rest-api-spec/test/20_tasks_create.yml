@@ -1,0 +1,48 @@
+"Test task creation - Only title":
+  - do:
+      _plugins.tasks_create:
+        body: { title: test }
+  - match: { result: created }
+  - match: { _shards.failed: 0 }
+
+  - do:
+      _plugins.tasks_read:
+        id: test
+  - match: { found: true }
+  - match: { _source.title: test }
+  - match: { _source.description: "" }
+  - match: { _source.status: PENDING }
+
+---
+
+"Test task creation - Title and description":
+  - do:
+      _plugins.tasks_create:
+        body: { title: test, description: test }
+  - match: { result: created }
+  - match: { _shards.failed: 0 }
+
+  - do:
+      _plugins.tasks_read:
+        id: test
+  - match: { found: true }
+  - match: { _source.title: test }
+  - match: { _source.description: test }
+  - match: { _source.status: PENDING }
+
+---
+
+"Test task creation - Title, description and status":
+  - do:
+      _plugins.tasks_create:
+          body: { title: test, description: test, status: IN_PROGRESS }
+  - match: { result: created }
+  - match: { _shards.failed: 0 }
+
+  - do:
+      _plugins.tasks_read:
+        id: test
+  - match: { found: true }
+  - match: { _source.title: test }
+  - match: { _source.description: test }
+  - match: { _source.status: IN_PROGRESS }

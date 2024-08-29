@@ -1,0 +1,18 @@
+{
+  "_plugins.tasks_create": {
+    "stability" : "stable",
+    "url": {
+      "paths": [
+        {
+          "path": "/_plugins/tasks",
+          "methods": ["POST"]
+        }
+      ]
+    },
+    "params": {},
+    "body": {
+      "description": "Task object to create.{title: string, description: string, status: string[PENDING|IN_PROGRESS|COMPLETED]}",
+      "required": true
+    }
+  }
+}

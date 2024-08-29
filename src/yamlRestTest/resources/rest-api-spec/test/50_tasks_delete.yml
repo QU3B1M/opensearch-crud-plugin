@@ -1,0 +1,22 @@
+"Test task deletion - Existent task":
+  - do:
+      _plugins.tasks_create:
+        body: { title: test }
+  - do:
+      _plugins.tasks_delete:
+        id: test
+  - match: { result: deleted }
+  - match: { _shards.failed: 0 }
+  - do:
+      _plugins.tasks_read:
+        id: test
+  - match: { found: false }
+
+---
+
+"Test task deletion - Non-existent task":
+  - do:
+      _plugins.tasks_delete:
+        id: test
+        ignore: 404
+  - match: { status: 404 }

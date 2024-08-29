@@ -1,0 +1,19 @@
+{
+  "_plugins.tasks_delete": {
+    "stability" : "stable",
+    "url": {
+      "paths": [
+        {
+          "path": "/_plugins/tasks/{id}",
+          "methods": ["DELETE"],
+          "parts": {
+            "id": {
+              "type": "string",
+              "description": "ID of the task to delete."
+            }
+          }
+        }
+      ]
+    }
+  }
+}
