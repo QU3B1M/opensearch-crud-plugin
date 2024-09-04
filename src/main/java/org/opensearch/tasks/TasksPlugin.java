@@ -26,7 +26,7 @@ import static java.util.Collections.singletonList;
 /**
  * The TasksPlugin class registers REST endpoints for OpenSearch.
  */
-public class TasksPlugin extends Plugin implements ActionPlugin  {
+public class TasksPlugin extends Plugin implements ActionPlugin {
 
     /**
      * Registers REST handlers.

@@ -32,7 +32,7 @@ import static org.opensearch.rest.RestRequest.Method.*;
  */
 public class RestTaskHandler extends BaseRestHandler {
 
-    static final String BASE_URI = "/_plugins/tasks";
+    public static final String BASE_URI = "/_plugins/tasks";
 
     /**
      * Returns the name of the handler.
