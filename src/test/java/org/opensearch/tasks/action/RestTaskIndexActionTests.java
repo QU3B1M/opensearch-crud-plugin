@@ -20,30 +20,107 @@ import java.io.IOException;
 import java.util.Locale;
 
 import static org.opensearch.tasks.model.Task.TASK_INDEX;
+import static org.opensearch.tasks.model.Task.TaskStatus.PENDING;
 
 public class RestTaskIndexActionTests extends OpenSearchTestCase {
     private String path;
-    private String body;
 
     @Before
     public void setUp() throws Exception {
         super.setUp();
         this.path =  String.format(Locale.ROOT, "%s", RestTaskHandler.BASE_URI);
-        this.body = "{ \"title\": \"Task 1\", \"description\": \"Description of Task 1\", \"status\": \"PENDING\" }";
     }
 
-    public void testCreateIndexRequest() throws IOException {
-        // Create and configure Builder object
+    public void testIndexRequest() throws IOException {
+        String title = "Task 1";
+        String description = "Description of Task 1";
+        String status = "PENDING";
+
+        String body = "{\"title\":\""+ title + "\",\"description\":\""+ description +"\",\"status\":\"" + status+ "\"}";
+
         FakeRestRequest.Builder builder = new FakeRestRequest.Builder(xContentRegistry());
         builder.withPath(this.path);
-        builder.withContent(new BytesArray(this.body), XContentType.JSON);
-        // Create FakeRestRequest and FakeRestChannel objects
+        builder.withContent(new BytesArray(body), XContentType.JSON);
+
         FakeRestRequest request = builder.build();
-        final FakeRestChannel channel = new FakeRestChannel(request, true, 1);
-        // Call createIndexRequest() method
         IndexRequest indexRequest = RestTaskIndexAction.createIndexRequest(request);
-        // Assert the returned IndexRequest object
-        assertEquals("Task 1", indexRequest.id());
+
         assertEquals(TASK_INDEX, indexRequest.index());
+        assertEquals(title, indexRequest.sourceAsMap().get("title"));
+        assertEquals(description, indexRequest.sourceAsMap().get("description"));
+        assertEquals(status, indexRequest.sourceAsMap().get("status"));
+    }
+
+    public void testIndexRequestWithEmptyDescription() throws IOException {
+        String title = "Task 1";
+        String status = "PENDING";
+
+        String body = "{\"title\":\""+ title + "\",\"status\":\"" + status+ "\"}";
+
+        FakeRestRequest.Builder builder = new FakeRestRequest.Builder(xContentRegistry());
+        builder.withPath(this.path);
+        builder.withContent(new BytesArray(body), XContentType.JSON);
+
+        FakeRestRequest request = builder.build();
+        IndexRequest indexRequest = RestTaskIndexAction.createIndexRequest(request);
+
+        assertEquals(TASK_INDEX, indexRequest.index());
+        assertEquals(title, indexRequest.sourceAsMap().get("title"));
+        assertEquals("" ,indexRequest.sourceAsMap().get("description"));
+        assertEquals(status, indexRequest.sourceAsMap().get("status"));
+    }
+
+    public void testIndexRequestWithEmptyStatus() throws IOException {
+        String title = "Task 1";
+        String description = "Description of Task 1";
+
+        String body = "{\"title\":\""+ title + "\",\"description\":\""+ description + "\"}";
+
+        FakeRestRequest.Builder builder = new FakeRestRequest.Builder(xContentRegistry());
+        builder.withPath(this.path);
+        builder.withContent(new BytesArray(body), XContentType.JSON);
+
+        FakeRestRequest request = builder.build();
+        IndexRequest indexRequest = RestTaskIndexAction.createIndexRequest(request);
+
+        assertEquals(TASK_INDEX, indexRequest.index());
+        assertEquals(title, indexRequest.sourceAsMap().get("title"));
+        assertEquals(description, indexRequest.sourceAsMap().get("description"));
+        assertEquals(PENDING.toString(), indexRequest.sourceAsMap().get("status"));
+    }
+
+    public void testIndexRequestWithEmptyDescriptionAndStatus() throws IOException {
+        String title = "Task 1";
+
+        String body = "{\"title\":\""+ title + "\"}";
+
+        FakeRestRequest.Builder builder = new FakeRestRequest.Builder(xContentRegistry());
+        builder.withPath(this.path);
+        builder.withContent(new BytesArray(body), XContentType.JSON);
+
+        FakeRestRequest request = builder.build();
+        IndexRequest indexRequest = RestTaskIndexAction.createIndexRequest(request);
+
+        assertEquals(TASK_INDEX, indexRequest.index());
+        assertEquals(title, indexRequest.sourceAsMap().get("title"));
+        assertEquals("" ,indexRequest.sourceAsMap().get("description"));
+        assertEquals(PENDING.toString(), indexRequest.sourceAsMap().get("status"));
+    }
+
+    public void testIndexRequestWithEmptyTitle() throws IOException {
+        String description = "Description of Task 1";
+        String status = "PENDING";
+
+        String body = "{\"description\":\""+ description + "\",\"status\":\"" + status+ "\"}";
+
+        FakeRestRequest.Builder builder = new FakeRestRequest.Builder(xContentRegistry());
+        builder.withPath(this.path);
+        builder.withContent(new BytesArray(body), XContentType.JSON);
+
+        FakeRestRequest request = builder.build();
+
+        // Error is raised when no title is provided
+        IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> RestTaskIndexAction.createIndexRequest(request));
+        assertEquals("Missing required parameters: title is mandatory", e.getMessage());
     }
 }
