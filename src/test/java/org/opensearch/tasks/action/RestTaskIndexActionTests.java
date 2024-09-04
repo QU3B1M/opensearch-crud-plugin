@@ -33,7 +33,7 @@ public class RestTaskIndexActionTests extends OpenSearchTestCase {
     }
 
     public void testCreateIndexRequest() throws IOException {
-        // Create Builder object
+        // Create and configure Builder object
         FakeRestRequest.Builder builder = new FakeRestRequest.Builder(xContentRegistry());
         builder.withPath(this.path);
         builder.withContent(new BytesArray(this.body), XContentType.JSON);

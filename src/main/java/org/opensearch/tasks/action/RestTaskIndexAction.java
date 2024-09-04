@@ -36,7 +36,13 @@ public class RestTaskIndexAction {
         Task task = Task.fromXContent(parser);
 
         if (task.getTitle() == null) {
-            throw new IllegalArgumentException("Missing required parameters: id is mandatory");
+            throw new IllegalArgumentException("Missing required parameters: title is mandatory");
+        }
+        if (task.getDescription() == null) {
+            task.setDescription("");
+        }
+        if (task.getStatus() == null) {
+            task.setStatus(Task.TaskStatus.PENDING);
         }
 
         IndexRequest indexRequest = new IndexRequest(Task.TASK_INDEX);

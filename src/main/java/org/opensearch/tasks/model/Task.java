@@ -59,8 +59,8 @@ public class Task implements ToXContentObject  {
      */
     public Task(String title, String description, TaskStatus status) {
         this.title = title;
-        this.description = description != null ? description : "";
-        this.status = status != null ? status : TaskStatus.PENDING;
+        this.description = description;
+        this.status = status;
     }
 
     /**
@@ -151,7 +151,7 @@ public class Task implements ToXContentObject  {
      */
     @Override
     public String toString() {
-        return "TaskDetails{" +
+        return "Task{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", status=" + status +
