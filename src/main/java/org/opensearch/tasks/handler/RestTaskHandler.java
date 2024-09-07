@@ -65,10 +65,9 @@ public class RestTaskHandler extends BaseRestHandler {
      * @param request The RestRequest containing the details of the request.
      * @param client The NodeClient to execute the request.
      * @return A RestChannelConsumer to handle the request.
-     * @throws IOException If an I/O error occurs.
      */
     @Override
-    protected RestChannelConsumer prepareRequest(RestRequest request, NodeClient client) throws IOException {
+    protected RestChannelConsumer prepareRequest(RestRequest request, NodeClient client) {
         try {
             switch (request.method()) {
                 case POST:

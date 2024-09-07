@@ -23,9 +23,8 @@ public class RestTaskDeleteAction {
      *
      * @param request The RestRequest containing the task ID.
      * @return The DeleteRequest to delete the task.
-     * @throws IOException If an I/O error occurs.
      */
-    public static DeleteRequest deleteRequest(RestRequest request) throws IOException {
+    public static DeleteRequest deleteRequest(RestRequest request) {
         return new DeleteRequest(Task.TASK_INDEX, request.param("id"));
     }
 }

@@ -24,9 +24,8 @@ public class RestTaskGetAction {
      *
      * @param request The RestRequest containing the task ID.
      * @return The GetRequest to retrieve the task.
-     * @throws IOException If an I/O error occurs.
      */
-    public static GetRequest getRequest(RestRequest request) throws IOException {
+    public static GetRequest getRequest(RestRequest request) {
         GetRequest getRequest = new GetRequest(Task.TASK_INDEX, request.param("id"));
         getRequest.fetchSourceContext(FetchSourceContext.parseFromRestRequest(request));
 
