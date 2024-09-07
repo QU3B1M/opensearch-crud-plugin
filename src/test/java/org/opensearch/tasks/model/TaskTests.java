@@ -15,12 +15,10 @@ import org.opensearch.core.xcontent.NamedXContentRegistry;
 import org.opensearch.core.xcontent.XContent;
 import org.opensearch.core.xcontent.XContentBuilder;
 import org.opensearch.core.xcontent.XContentParser;
-import org.opensearch.tasks.handler.RestTaskHandler;
 import org.opensearch.test.OpenSearchTestCase;
-import org.opensearch.test.rest.FakeRestRequest;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Locale;
+
 
 public class TaskTests extends OpenSearchTestCase {
 

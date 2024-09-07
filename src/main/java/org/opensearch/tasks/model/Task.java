@@ -18,7 +18,6 @@ import java.util.Objects;
 
 import static org.opensearch.core.xcontent.XContentParserUtils.ensureExpectedToken;
 
-
 /**
  * This class represents a Task model
  */

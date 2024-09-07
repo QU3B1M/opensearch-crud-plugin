@@ -11,8 +11,6 @@ import org.opensearch.action.delete.DeleteRequest;
 import org.opensearch.rest.RestRequest;
 import org.opensearch.tasks.model.Task;
 
-import java.io.IOException;
-
 /**
  * Handles the deletion of tasks in OpenSearch.
  */

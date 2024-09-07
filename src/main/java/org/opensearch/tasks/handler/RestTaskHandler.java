@@ -22,7 +22,6 @@ import org.opensearch.tasks.action.RestTaskGetAction;
 import org.opensearch.tasks.action.RestTaskIndexAction;
 import org.opensearch.tasks.action.RestTaskUpdateAction;
 
-import java.io.IOException;
 import java.util.List;
 
 import static org.opensearch.rest.RestRequest.Method.*;

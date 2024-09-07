@@ -12,8 +12,6 @@ import org.opensearch.rest.RestRequest;
 import org.opensearch.search.fetch.subphase.FetchSourceContext;
 import org.opensearch.tasks.model.Task;
 
-import java.io.IOException;
-
 /**
  * Handles the retrieval of tasks in OpenSearch.
  */
