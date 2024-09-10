@@ -24,7 +24,11 @@ public class RestTaskGetAction {
      * @return The GetRequest to retrieve the task.
      */
     public static GetRequest getRequest(RestRequest request) {
-        GetRequest getRequest = new GetRequest(Task.TASK_INDEX, request.param("id"));
+        String taskId = request.param("id");
+        if (taskId == null) {
+            throw new IllegalArgumentException("Missing required parameters: id is mandatory");
+        }
+        GetRequest getRequest = new GetRequest(Task.TASK_INDEX, taskId);
         getRequest.fetchSourceContext(FetchSourceContext.parseFromRestRequest(request));
 
         return getRequest;
