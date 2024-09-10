@@ -31,11 +31,16 @@ public class RestTaskUpdateAction {
      * @throws IOException If an I/O error occurs.
      */
     public static UpdateRequest updateRequest(RestRequest request) throws IOException {
+        String taskId = request.param("id");
+        if (taskId == null) {
+            throw new IllegalArgumentException("Missing required parameters: id is mandatory");
+        }
+
         XContentParser parser = request.contentParser();
         ensureExpectedToken(XContentParser.Token.START_OBJECT, parser.nextToken(), parser);
         Task task = Task.fromXContent(parser);
 
-        UpdateRequest updateRequest = new UpdateRequest(Task.TASK_INDEX, request.param("id"));
+        UpdateRequest updateRequest = new UpdateRequest(Task.TASK_INDEX, taskId);
         updateRequest.doc(task.toXContent(XContentFactory.jsonBuilder(), ToXContent.EMPTY_PARAMS));
         updateRequest.fetchSource(true);
 
