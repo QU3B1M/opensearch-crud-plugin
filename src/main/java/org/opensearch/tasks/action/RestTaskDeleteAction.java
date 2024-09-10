@@ -23,6 +23,11 @@ public class RestTaskDeleteAction {
      * @return The DeleteRequest to delete the task.
      */
     public static DeleteRequest deleteRequest(RestRequest request) {
-        return new DeleteRequest(Task.TASK_INDEX, request.param("id"));
+        String taskId = request.param("id");
+        if (taskId == null) {
+            throw new IllegalArgumentException("Missing required parameters: id is mandatory");
+        }
+
+        return new DeleteRequest(Task.TASK_INDEX, taskId);
     }
 }
