@@ -36,6 +36,6 @@ public class TasksPluginIT extends OpenSearchIntegTestCase {
         String body = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
 
         logger.info("response body: {}", body);
-//        assertThat(body, containsString("tasks"));
+        assertTrue(body.toString().contains("tasks"));
     }
 }
