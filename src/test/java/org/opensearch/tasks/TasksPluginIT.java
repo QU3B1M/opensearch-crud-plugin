@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.opensearch.tasks.handler.RestTaskHandler.BASE_URI;
 
 @ThreadLeakScope(ThreadLeakScope.Scope.NONE)
 @OpenSearchIntegTestCase.ClusterScope(scope = OpenSearchIntegTestCase.Scope.SUITE)
@@ -35,7 +36,23 @@ public class TasksPluginIT extends OpenSearchIntegTestCase {
         Response response = getRestClient().performRequest(new Request("GET", "/_cat/plugins"));
         String body = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
 
-        logger.info("response body: {}", body);
-        assertTrue(body.toString().contains("tasks"));
+        assertTrue(body.contains("tasks"));
+    }
+
+    public void testTaskIndexing() throws IOException, ParseException {
+        String title = "Task 1";
+        String description = "Description of Task 1";
+        String status = "PENDING";
+
+        String body = "{\"title\":\""+ title + "\",\"description\":\""+ description +"\",\"status\":\"" + status + "\"}";
+
+        Request request = new Request("POST", BASE_URI);
+        request.setJsonEntity(body);
+
+        Response response = getRestClient().performRequest(request);
+        String responseBody = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
+
+        assertTrue(responseBody.contains(title));
+        assertTrue(responseBody.contains("\"result\":\"created\""));
     }
 }
