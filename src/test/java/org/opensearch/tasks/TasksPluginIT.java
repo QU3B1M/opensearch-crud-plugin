@@ -20,8 +20,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Collections;
 
-import static org.hamcrest.Matchers.containsString;
 import static org.opensearch.tasks.handler.RestTaskHandler.BASE_URI;
+import static org.opensearch.tasks.model.Task.TASK_INDEX;
 
 @ThreadLeakScope(ThreadLeakScope.Scope.NONE)
 @OpenSearchIntegTestCase.ClusterScope(scope = OpenSearchIntegTestCase.Scope.SUITE)
@@ -54,5 +54,16 @@ public class TasksPluginIT extends OpenSearchIntegTestCase {
 
         assertTrue(responseBody.contains(title));
         assertTrue(responseBody.contains("\"result\":\"created\""));
+    }
+
+    public void testIndexIsCreated() throws IOException, ParseException {
+        Request request = new Request("POST", BASE_URI);
+        request.setJsonEntity("{\"title\":\"test\"}");
+        getRestClient().performRequest(request);
+
+        Response response = getRestClient().performRequest(new Request("GET", "_cat/indices"));
+        String body = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
+
+        assertTrue(body.contains(TASK_INDEX));
     }
 }
