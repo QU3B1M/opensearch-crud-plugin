@@ -51,7 +51,7 @@ public class TasksPluginIT extends OpenSearchIntegTestCase {
     }
 
     public void testCreateTask() throws IOException, ParseException {
-        String title = "Task 1";
+        String title = "Task_1";
         String description = "Description of Task 1";
         String status = "PENDING";
 
@@ -70,5 +70,43 @@ public class TasksPluginIT extends OpenSearchIntegTestCase {
 
         assertTrue(getBody.contains("\"found\":true"));
         assertTrue(getBody.contains(task));
+    }
+
+    public void testTaskCompleteLifeCycle() throws IOException, ParseException {
+        String id = "Task_id";
+        String title = "Task_1";
+        String description = "Description updated";
+        String status = "IN_PROGRESS";
+
+        String update_task = "{\"title\":\""+ title + "\",\"description\":\""+ description +"\",\"status\":\"" + status + "\"}";
+
+        Request post = new Request("POST", BASE_URI);
+        Request get = new Request("GET", BASE_URI + "/" + id);
+        Request put = new Request("PUT", BASE_URI + "/" + id);
+        Request delete = new Request("DELETE", BASE_URI + "/" + id);
+
+        post.setJsonEntity("{\"title\":\""+ id +"\"}");
+        put.setJsonEntity(update_task);
+
+        Response postResponse = getRestClient().performRequest(post);
+        String postBody = EntityUtils.toString(postResponse.getEntity(), StandardCharsets.UTF_8);
+        assertTrue(postBody.contains("\"result\":\"created\""));
+
+        Response getResponse = getRestClient().performRequest(get);
+        String getBody = EntityUtils.toString(getResponse.getEntity(), StandardCharsets.UTF_8);
+        assertTrue(getBody.contains("\"found\":true"));
+
+        Response putResponse = getRestClient().performRequest(put);
+        String putBody = EntityUtils.toString(putResponse.getEntity(), StandardCharsets.UTF_8);
+        assertTrue(putBody.contains("\"result\":\"updated\""));
+        assertTrue(putBody.contains(update_task));
+
+        Response deleteResponse = getRestClient().performRequest(delete);
+        String deleteBody = EntityUtils.toString(deleteResponse.getEntity(), StandardCharsets.UTF_8);
+        assertTrue(deleteBody.contains("\"result\":\"deleted\""));
+
+        getResponse = getRestClient().performRequest(get);
+        getBody = EntityUtils.toString(getResponse.getEntity(), StandardCharsets.UTF_8);
+        assertTrue(getBody.contains("\"found\":false"));
     }
 }
