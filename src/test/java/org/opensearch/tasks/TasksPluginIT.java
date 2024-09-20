@@ -39,7 +39,7 @@ public class TasksPluginIT extends OpenSearchIntegTestCase {
         assertTrue(body.contains("tasks"));
     }
 
-    public void testIndexIsCreated() throws IOException, ParseException {
+    public void testIndexCreated() throws IOException, ParseException {
         Request request = new Request("POST", BASE_URI);
         request.setJsonEntity("{\"title\":\"test\"}");
         getRestClient().performRequest(request);
@@ -50,38 +50,25 @@ public class TasksPluginIT extends OpenSearchIntegTestCase {
         assertTrue(body.contains(TASK_INDEX));
     }
 
-    public void testTaskIndexing() throws IOException, ParseException {
+    public void testCreateTask() throws IOException, ParseException {
         String title = "Task 1";
         String description = "Description of Task 1";
         String status = "PENDING";
 
-        String body = "{\"title\":\""+ title + "\",\"description\":\""+ description +"\",\"status\":\"" + status + "\"}";
-
-        Request request = new Request("POST", BASE_URI);
-        request.setJsonEntity(body);
-
-        Response response = getRestClient().performRequest(request);
-        String responseBody = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
-
-        assertTrue(responseBody.contains(title));
-        assertTrue(responseBody.contains("\"result\":\"created\""));
-    }
-
-    public void testTaskRead() throws IOException, ParseException {
-        String title = "Task_1";
-        String description = "Description of Task 1";
-        String status = "PENDING";
-        String source = "{\"title\":\""+title +"\",\"description\":\""+description+"\",\"status\":\""+status+"\"}";
+        String task = "{\"title\":\""+ title + "\",\"description\":\""+ description +"\",\"status\":\"" + status + "\"}";
 
         Request post = new Request("POST", BASE_URI);
-        post.setJsonEntity(source);
-        getRestClient().performRequest(post);
+        post.setJsonEntity(task);
 
-        Request request = new Request("GET", BASE_URI + "/" + title);
-        Response response = getRestClient().performRequest(request);
-        String body = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
+        Response postResponse = getRestClient().performRequest(post);
+        String postBody = EntityUtils.toString(postResponse.getEntity(), StandardCharsets.UTF_8);
+        assertTrue(postBody.contains("\"result\":\"created\""));
 
-        assertTrue(body.contains("\"found\":true"));
-        assertTrue(body.contains(source));
+        Request get = new Request("GET", BASE_URI + "/" + title);
+        Response getResponse = getRestClient().performRequest(get);
+        String getBody = EntityUtils.toString(getResponse.getEntity(), StandardCharsets.UTF_8);
+
+        assertTrue(getBody.contains("\"found\":true"));
+        assertTrue(getBody.contains(task));
     }
 }
