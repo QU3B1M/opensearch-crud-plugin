@@ -39,6 +39,17 @@ public class TasksPluginIT extends OpenSearchIntegTestCase {
         assertTrue(body.contains("tasks"));
     }
 
+    public void testIndexIsCreated() throws IOException, ParseException {
+        Request request = new Request("POST", BASE_URI);
+        request.setJsonEntity("{\"title\":\"test\"}");
+        getRestClient().performRequest(request);
+
+        Response response = getRestClient().performRequest(new Request("GET", "_cat/indices"));
+        String body = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
+
+        assertTrue(body.contains(TASK_INDEX));
+    }
+
     public void testTaskIndexing() throws IOException, ParseException {
         String title = "Task 1";
         String description = "Description of Task 1";
@@ -56,14 +67,21 @@ public class TasksPluginIT extends OpenSearchIntegTestCase {
         assertTrue(responseBody.contains("\"result\":\"created\""));
     }
 
-    public void testIndexIsCreated() throws IOException, ParseException {
-        Request request = new Request("POST", BASE_URI);
-        request.setJsonEntity("{\"title\":\"test\"}");
-        getRestClient().performRequest(request);
+    public void testTaskRead() throws IOException, ParseException {
+        String title = "Task_1";
+        String description = "Description of Task 1";
+        String status = "PENDING";
+        String source = "{\"title\":\""+title +"\",\"description\":\""+description+"\",\"status\":\""+status+"\"}";
 
-        Response response = getRestClient().performRequest(new Request("GET", "_cat/indices"));
+        Request post = new Request("POST", BASE_URI);
+        post.setJsonEntity(source);
+        getRestClient().performRequest(post);
+
+        Request request = new Request("GET", BASE_URI + "/" + title);
+        Response response = getRestClient().performRequest(request);
         String body = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
 
-        assertTrue(body.contains(TASK_INDEX));
+        assertTrue(body.contains("\"found\":true"));
+        assertTrue(body.contains(source));
     }
 }
