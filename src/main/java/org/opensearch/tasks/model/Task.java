@@ -7,6 +7,8 @@
  */
 package org.opensearch.tasks.model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.opensearch.core.xcontent.ToXContent;
 import org.opensearch.core.xcontent.XContentBuilder;
 import org.opensearch.core.xcontent.XContentParser;
@@ -22,6 +24,7 @@ import static org.opensearch.core.xcontent.XContentParserUtils.ensureExpectedTok
  * This class represents a Task model
  */
 public class Task implements ToXContentObject  {
+    private static final Logger log = LogManager.getLogger(Task.class);
 
     /**
      * Enum for the different statuses of a task
@@ -191,6 +194,7 @@ public class Task implements ToXContentObject  {
         String title = null;
         String description = null;
         TaskStatus status = null;
+        log.info(testStatic());
 
         ensureExpectedToken(XContentParser.Token.START_OBJECT, parser.currentToken(), parser);
         while (parser.nextToken() != XContentParser.Token.END_OBJECT) {
@@ -223,5 +227,9 @@ public class Task implements ToXContentObject  {
      */
     public static Task fromXContent(XContentParser parser) throws IOException {
         return parse(parser);
+    }
+
+    public static String testStatic() {
+        return "NOPE";
     }
 }

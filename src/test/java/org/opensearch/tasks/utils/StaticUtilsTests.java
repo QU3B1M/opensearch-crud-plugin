@@ -1,0 +1,27 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+package org.opensearch.tasks.utils;
+
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+import org.opensearch.test.OpenSearchIntegTestCase;
+
+@OpenSearchIntegTestCase.ClusterScope(scope = OpenSearchIntegTestCase.Scope.SUITE)
+public class StaticUtilsTests extends OpenSearchIntegTestCase {
+
+    public void testStaticNoArg() {
+        assertEquals(StaticUtils.name(), "TEST");
+
+        try (MockedStatic<StaticUtils> utilities = Mockito.mockStatic(StaticUtils.class)) {
+            utilities.when(StaticUtils::name).thenReturn("NOPE");
+            assertEquals(StaticUtils.name(), "NOPE");
+        }
+
+        assertEquals(StaticUtils.name(), "TEST");
+    }
+}

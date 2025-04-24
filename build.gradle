@@ -7,6 +7,15 @@ apply plugin: 'opensearch.opensearchplugin'
 apply plugin: 'opensearch.yaml-rest-test'
 apply plugin: 'opensearch.pluginzip'
 
+dependencies {
+    testImplementation 'org.mockito:mockito-inline:5.2.0' // or a compatible recent version
+    testImplementation 'net.bytebuddy:byte-buddy-agent:1.14.7' // or match the version of byte-buddy used by mockito-inline
+
+
+}
+
+
+
 def pluginName = 'tasks'
 def pluginDescription = 'Custom plugin to manage Tasks'
 def projectPath = 'org.opensearch'
@@ -86,6 +95,7 @@ repositories {
 }
 
 test {
+    jvmArgs += ["-Djdk.attach.allowAttachSelf=true"]
     include '**/*Tests.class'
 }
 
