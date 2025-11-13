@@ -7,12 +7,13 @@
  */
 package org.opensearch.tasks.utils;
 
+import org.opensearch.test.OpenSearchTestCase;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
-import org.opensearch.test.OpenSearchIntegTestCase;
 
-@OpenSearchIntegTestCase.ClusterScope(scope = OpenSearchIntegTestCase.Scope.SUITE)
-public class StaticUtilsTests extends OpenSearchIntegTestCase {
+import static org.junit.Assert.assertEquals;
+
+public class StaticUtilsTests extends OpenSearchTestCase {
 
     public void testStaticNoArg() {
         assertEquals(StaticUtils.name(), "TEST");

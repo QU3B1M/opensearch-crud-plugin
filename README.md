@@ -92,9 +92,9 @@ The plugin source code is structured as follows:
 ---
 
 ### Used software versions
-- **JVM:** 21.0.4
-- **Gradle:** 8.5
-- **Groovy:** 3.0.17
+- **JVM:** 21 (OpenSearch 3.x requires Java 21)
+- **Gradle:** 8.14.3
+- **OpenSearch:** 3.3.0
 
 ### Faced issues
 
