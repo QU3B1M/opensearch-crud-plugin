@@ -11,12 +11,8 @@ import org.opensearch.action.delete.DeleteRequest;
 import org.opensearch.action.get.GetRequest;
 import org.opensearch.action.index.IndexRequest;
 import org.opensearch.action.update.UpdateRequest;
+import org.opensearch.rest.*;
 import org.opensearch.transport.client.node.NodeClient;
-import org.opensearch.rest.BaseRestHandler;
-import org.opensearch.rest.BytesRestResponse;
-import org.opensearch.rest.RestRequest;
-import org.opensearch.rest.RestChannel;
-import org.opensearch.rest.RestResponse;
 import org.opensearch.rest.action.RestResponseListener;
 import org.opensearch.rest.action.RestToXContentListener;
 import org.opensearch.core.rest.RestStatus;
@@ -56,10 +52,33 @@ public class RestTaskHandler extends BaseRestHandler {
     @Override
     public List<Route> routes() {
         return List.of(
-                new Route(POST, BASE_URI),
-                new Route(GET, BASE_URI + "/{id}"),
-                new Route(PUT, BASE_URI + "/{id}"),
-                new Route(DELETE, BASE_URI + "/{id}")
+            // Auth test endpoint
+            new NamedRoute.Builder()
+                .path("/_plugins/auth")
+                .method(GET)
+                .uniqueName("plugin:test/auth")
+                .build(),
+            // Task management endpoints
+            new NamedRoute.Builder()
+                .path(BASE_URI)
+                .method(POST)
+                .uniqueName("plugin:tasks/create")
+                .build(),
+            new NamedRoute.Builder()
+                .path(BASE_URI + "/{id}")
+                .method(GET)
+                .uniqueName("plugin:tasks/get")
+                .build(),
+            new NamedRoute.Builder()
+                .path(BASE_URI + "/{id}")
+                .method(PUT)
+                .uniqueName("plugin:tasks/update")
+                .build(),
+            new NamedRoute.Builder()
+                .path(BASE_URI + "/{id}")
+                .method(DELETE)
+                .uniqueName("plugin:tasks/delete")
+                .build()
         );
     }
 
@@ -73,6 +92,19 @@ public class RestTaskHandler extends BaseRestHandler {
     @Override
     protected RestChannelConsumer prepareRequest(RestRequest request, NodeClient client) {
         try {
+            // Handle auth test endpoint
+            if ("/_plugins/auth".equals(request.path()) && request.method() == GET) {
+                return channel -> {
+                    BytesRestResponse response = new BytesRestResponse(
+                        RestStatus.OK,
+                        "application/json",
+                        "{\"message\": \"Authenticated user access granted\"}"
+                    );
+                    channel.sendResponse(response);
+                };
+            }
+
+            // Handle task endpoints
             switch (request.method()) {
                 case POST:
                     IndexRequest indexRequest = RestTaskIndexAction.createIndexRequest(request);
