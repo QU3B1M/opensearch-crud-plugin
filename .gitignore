@@ -56,3 +56,6 @@ testfixtures_shared/
 
 # These are generated from .ci/jobs.t
 .ci/jobs/
+
+# SSL certificates for local testing
+certs/
