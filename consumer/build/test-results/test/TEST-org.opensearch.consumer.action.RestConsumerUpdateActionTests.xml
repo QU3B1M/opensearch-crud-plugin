@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.opensearch.consumer.action.RestConsumerUpdateActionTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-11-27T12:38:03" hostname="tyner" time="1.341">
+  <properties/>
+  <testcase name="testUpdateRequestWithoutStatus" classname="org.opensearch.consumer.action.RestConsumerUpdateActionTests" time="1.203"/>
+  <testcase name="testUpdateRequestWithEmptyDescription" classname="org.opensearch.consumer.action.RestConsumerUpdateActionTests" time="0.037"/>
+  <testcase name="testUpdateRequestWithoutTitle" classname="org.opensearch.consumer.action.RestConsumerUpdateActionTests" time="0.032"/>
+  <testcase name="testUpdateRequestWithoutId" classname="org.opensearch.consumer.action.RestConsumerUpdateActionTests" time="0.023"/>
+  <testcase name="testUpdateRequest" classname="org.opensearch.consumer.action.RestConsumerUpdateActionTests" time="0.03"/>
+  <system-out><![CDATA[[2025-11-27T15:38:03,463][INFO ][o.o.c.a.RestConsumerUpdateActionTests] [testUpdateRequestWithoutStatus] before test
+[2025-11-27T15:38:04,285][INFO ][o.o.c.m.Consumer         ] [testUpdateRequestWithoutStatus] NOPE
+[2025-11-27T15:38:04,560][INFO ][o.o.c.a.RestConsumerUpdateActionTests] [testUpdateRequestWithoutStatus] after test
+[2025-11-27T15:38:04,631][INFO ][o.o.c.a.RestConsumerUpdateActionTests] [testUpdateRequestWithEmptyDescription] before test
+[2025-11-27T15:38:04,635][INFO ][o.o.c.m.Consumer         ] [testUpdateRequestWithEmptyDescription] NOPE
+[2025-11-27T15:38:04,638][INFO ][o.o.c.a.RestConsumerUpdateActionTests] [testUpdateRequestWithEmptyDescription] after test
+[2025-11-27T15:38:04,657][INFO ][o.o.c.a.RestConsumerUpdateActionTests] [testUpdateRequestWithoutTitle] before test
+[2025-11-27T15:38:04,660][INFO ][o.o.c.m.Consumer         ] [testUpdateRequestWithoutTitle] NOPE
+[2025-11-27T15:38:04,663][INFO ][o.o.c.a.RestConsumerUpdateActionTests] [testUpdateRequestWithoutTitle] after test
+[2025-11-27T15:38:04,696][INFO ][o.o.c.a.RestConsumerUpdateActionTests] [testUpdateRequestWithoutId] before test
+[2025-11-27T15:38:04,711][INFO ][o.o.c.a.RestConsumerUpdateActionTests] [testUpdateRequestWithoutId] after test
+[2025-11-27T15:38:04,721][INFO ][o.o.c.a.RestConsumerUpdateActionTests] [testUpdateRequest] before test
+[2025-11-27T15:38:04,724][INFO ][o.o.c.m.Consumer         ] [testUpdateRequest] NOPE
+[2025-11-27T15:38:04,742][INFO ][o.o.c.a.RestConsumerUpdateActionTests] [testUpdateRequest] after test
+]]></system-out>
+  <system-err><![CDATA[Nov 27, 2025 9:38:02 AM org.apache.lucene.internal.vectorization.VectorizationProvider lookup
+WARNING: Java vector incubator module is not readable. For optimal vector performance, pass '--add-modules jdk.incubator.vector' to enable Vector API.
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+]]></system-err>
+</testsuite>

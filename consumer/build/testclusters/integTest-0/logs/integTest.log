@@ -1,0 +1,80 @@
+[2025-11-27T09:37:38,956][WARN ][stderr                   ] [integTest-0] Nov 27, 2025 9:37:38 AM org.opensearch.javaagent.bootstrap.AgentPolicy setPolicy
+[2025-11-27T09:37:38,958][WARN ][stderr                   ] [integTest-0] INFO: Policy attached successfully: org.opensearch.bootstrap.OpenSearchPolicy@38b8b6c0
+[2025-11-27T09:37:38,969][INFO ][o.o.n.Node               ] [integTest-0] version[3.2.0-SNAPSHOT], pid[35439], build[zip/c0b08c36015b2ce0f7cab9c6294e835b6b98a2e4/2025-10-13T21:15:24.347462178Z], OS[Linux/6.1.0-41-amd64/amd64], JVM[Amazon.com Inc./OpenJDK 64-Bit Server VM/21.0.7/21.0.7+6-LTS]
+[2025-11-27T09:37:38,969][INFO ][o.o.n.Node               ] [integTest-0] JVM home [/home/fede/.jdks/corretto-21.0.7]
+[2025-11-27T09:37:38,974][INFO ][o.o.n.Node               ] [integTest-0] JVM arguments [-Xshare:auto, -Dopensearch.networkaddress.cache.ttl=60, -Dopensearch.networkaddress.cache.negative.ttl=10, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -XX:+ShowCodeDetailsInExceptionMessages, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dio.netty.allocator.numDirectArenas=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.locale.providers=SPI,CLDR, -Xms1g, -Xmx1g, -XX:+UseG1GC, -XX:G1ReservePercent=25, -XX:InitiatingHeapOccupancyPercent=30, -Djava.io.tmpdir=/home/fede/IdeaProjects/opensearch-crud-plugin/consumer/build/testclusters/integTest-0/tmp, -XX:+HeapDumpOnOutOfMemoryError, -XX:HeapDumpPath=logs, -XX:ErrorFile=logs/hs_err_pid%p.log, -Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m, --add-modules=jdk.incubator.vector, -javaagent:agent/opensearch-agent.jar, --add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED, -Xms512m, -Xmx512m, -ea, -esa, -Dtests.security.manager=false, -Dopensearch.set.netty.runtime.available.processors=false, -XX:MaxDirectMemorySize=268435456, -Dopensearch.path.home=/home/fede/IdeaProjects/opensearch-crud-plugin/consumer/build/testclusters/integTest-0/distro/3.2.0-INTEG_TEST, -Dopensearch.path.conf=/home/fede/IdeaProjects/opensearch-crud-plugin/consumer/build/testclusters/integTest-0/config, -Dopensearch.distribution.type=zip, -Dopensearch.bundled_jdk=false]
+[2025-11-27T09:37:38,974][WARN ][o.o.n.Node               ] [integTest-0] version [3.2.0-SNAPSHOT] is a pre-release version of OpenSearch and is not suitable for production
+[2025-11-27T09:37:39,104][WARN ][stderr                   ] [integTest-0] Nov 27, 2025 9:37:39 AM org.apache.lucene.internal.vectorization.PanamaVectorizationProvider <init>
+[2025-11-27T09:37:39,104][WARN ][stderr                   ] [integTest-0] INFO: Java vector incubator API enabled; uses preferredBitSize=256; FMA enabled
+[2025-11-27T09:37:39,196][INFO ][o.o.p.PluginsService     ] [integTest-0] loaded module [transport-grpc]
+[2025-11-27T09:37:39,197][INFO ][o.o.p.PluginsService     ] [integTest-0] loaded module [transport-netty4]
+[2025-11-27T09:37:39,197][INFO ][o.o.p.PluginsService     ] [integTest-0] loaded plugin [consumer]
+[2025-11-27T09:37:39,240][WARN ][stderr                   ] [integTest-0] WARNING: A restricted method in java.lang.foreign.Linker has been called
+[2025-11-27T09:37:39,241][WARN ][stderr                   ] [integTest-0] WARNING: java.lang.foreign.Linker::downcallHandle has been called by the unnamed module
+[2025-11-27T09:37:39,241][WARN ][stderr                   ] [integTest-0] WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for this module
+[2025-11-27T09:37:39,324][INFO ][o.o.e.NodeEnvironment    ] [integTest-0] using [1] data paths, mounts [[/home (/dev/nvme0n1p5)]], net usable_space [105.8gb], net total_space [392.6gb], types [ext4]
+[2025-11-27T09:37:39,324][INFO ][o.o.e.NodeEnvironment    ] [integTest-0] heap size [512mb], compressed ordinary object pointers [true]
+[2025-11-27T09:37:39,353][INFO ][o.o.n.Node               ] [integTest-0] node name [integTest-0], node ID [fLvWOsKtQVuYyozhfclnhA], cluster name [integTest], roles [ingest, remote_cluster_client, data, cluster_manager]
+[2025-11-27T09:37:39,376][INFO ][o.o.e.ExtensionsManager  ] [integTest-0] ExtensionsManager initialized
+[2025-11-27T09:37:40,546][INFO ][o.o.t.g.p.r.s.q.QueryBuilderProtoConverterRegistry] [integTest-0] Registered 4 built-in query converters
+[2025-11-27T09:37:40,547][INFO ][o.o.t.g.p.r.s.q.QueryBuilderProtoConverterRegistry] [integTest-0] Loaded 0 external query converters (0 failed)
+[2025-11-27T09:37:40,757][INFO ][o.o.t.NettyAllocator     ] [integTest-0] creating NettyAllocator with the following configs: [name=unpooled, suggested_max_allocation_size=256kb, factors={opensearch.unsafe.use_unpooled_allocator=null, g1gc_enabled=true, g1gc_region_size=1mb, heap_size=512mb}]
+[2025-11-27T09:37:40,827][INFO ][o.o.d.DiscoveryModule    ] [integTest-0] using discovery type [zen] and seed hosts providers [settings, file]
+[2025-11-27T09:37:41,075][WARN ][o.o.g.DanglingIndicesState] [integTest-0] gateway.auto_import_dangling_indices is disabled, dangling indices will not be automatically detected or imported and must be managed manually
+[2025-11-27T09:37:41,269][INFO ][o.o.n.Node               ] [integTest-0] initialized
+[2025-11-27T09:37:41,270][INFO ][o.o.n.Node               ] [integTest-0] starting ...
+[2025-11-27T09:37:41,387][INFO ][o.o.t.TransportService   ] [integTest-0] publish_address {127.0.0.1:32963}, bound_addresses {127.0.0.1:32963}
+[2025-11-27T09:37:41,388][INFO ][o.o.t.TransportService   ] [integTest-0] Remote clusters initialized successfully.
+[2025-11-27T09:37:41,552][WARN ][o.o.d.FileBasedSeedHostsProvider] [integTest-0] expected, but did not find, a dynamic hosts list at [/home/fede/IdeaProjects/opensearch-crud-plugin/consumer/build/testclusters/integTest-0/config/unicast_hosts.txt]
+[2025-11-27T09:37:41,552][INFO ][o.o.c.c.Coordinator      ] [integTest-0] setting initial configuration to VotingConfiguration{fLvWOsKtQVuYyozhfclnhA}
+[2025-11-27T09:37:41,599][INFO ][o.o.h.AbstractHttpServerTransport] [integTest-0] publish_address {127.0.0.1:44159}, bound_addresses {127.0.0.1:44159}
+[2025-11-27T09:37:41,601][INFO ][o.o.n.Node               ] [integTest-0] started
+[2025-11-27T09:37:41,681][INFO ][o.o.c.s.ClusterManagerService] [integTest-0] Tasks batched with key: org.opensearch.cluster.coordination.JoinHelper, count:3 and sample tasks: elected-as-cluster-manager ([1] nodes joined)[{integTest-0}{fLvWOsKtQVuYyozhfclnhA}{GyOYsyztQ8uZMu86sd-GdQ}{127.0.0.1}{127.0.0.1:32963}{dimr}{testattr=test, shard_indexing_pressure_enabled=true} elect leader, _BECOME_CLUSTER_MANAGER_TASK_, _FINISH_ELECTION_], term: 1, version: 1, delta: cluster-manager node changed {previous [], current [{integTest-0}{fLvWOsKtQVuYyozhfclnhA}{GyOYsyztQ8uZMu86sd-GdQ}{127.0.0.1}{127.0.0.1:32963}{dimr}{testattr=test, shard_indexing_pressure_enabled=true}]}
+[2025-11-27T09:37:41,707][INFO ][o.o.c.c.CoordinationState] [integTest-0] cluster UUID set to [GdrYZOh6R3a5Xi4Xx9V2aQ]
+[2025-11-27T09:37:41,725][INFO ][o.o.c.s.ClusterApplierService] [integTest-0] cluster-manager node changed {previous [], current [{integTest-0}{fLvWOsKtQVuYyozhfclnhA}{GyOYsyztQ8uZMu86sd-GdQ}{127.0.0.1}{127.0.0.1:32963}{dimr}{testattr=test, shard_indexing_pressure_enabled=true}]}, term: 1, version: 1, reason: Publication{term=1, version=1}
+[2025-11-27T09:37:41,736][INFO ][o.o.d.PeerFinder         ] [integTest-0] setting findPeersInterval to [1s] as node commission status = [true] for local node [{integTest-0}{fLvWOsKtQVuYyozhfclnhA}{GyOYsyztQ8uZMu86sd-GdQ}{127.0.0.1}{127.0.0.1:32963}{dimr}{testattr=test, shard_indexing_pressure_enabled=true}]
+[2025-11-27T09:37:41,752][INFO ][o.o.g.GatewayService     ] [integTest-0] recovered [0] indices into cluster_state
+[2025-11-27T09:37:48,493][INFO ][o.o.c.s.ClusterManagerService] [integTest-0] Tasks batched with key: org.opensearch.cluster.coordination.JoinHelper, count:1 and sample tasks: node-join[{external_0}{cytHDQAAQACOfJ8FAAAAAA}{tixHYwPFQvyYX-hNpvQxHw}{127.0.0.1}{127.0.0.1:9300}{r}{shard_indexing_pressure_enabled=true} join existing leader], term: 1, version: 3, delta: added {{external_0}{cytHDQAAQACOfJ8FAAAAAA}{tixHYwPFQvyYX-hNpvQxHw}{127.0.0.1}{127.0.0.1:9300}{r}{shard_indexing_pressure_enabled=true}}
+[2025-11-27T09:37:48,537][INFO ][o.o.c.s.ClusterApplierService] [integTest-0] added {{external_0}{cytHDQAAQACOfJ8FAAAAAA}{tixHYwPFQvyYX-hNpvQxHw}{127.0.0.1}{127.0.0.1:9300}{r}{shard_indexing_pressure_enabled=true}}, term: 1, version: 3, reason: Publication{term=1, version=3}
+[2025-11-27T09:37:48,555][INFO ][o.o.c.s.ClusterManagerTaskThrottler] [integTest-0] Starting cluster manager throttling as all nodes are higher than or equal to 2.5.0
+[2025-11-27T09:37:48,611][INFO ][o.o.p.PluginsService     ] [integTest-0] PluginService:onIndexModule index:[ptFmzEZPQf60Gl4MGt-XuA/FCQIFd5RS1qckK7hqP3Zww]
+[2025-11-27T09:37:48,684][INFO ][o.o.c.m.MetadataIndexTemplateService] [integTest-0] adding template [random_index_template] for index patterns [*]
+[2025-11-27T09:37:49,011][INFO ][o.o.c.m.Consumer         ] [integTest-0] NOPE
+[2025-11-27T09:37:49,027][INFO ][o.o.p.PluginsService     ] [integTest-0] PluginService:onIndexModule index:[consumer/47ZBD-orRBirxzHTWVuXRg]
+[2025-11-27T09:37:49,031][INFO ][o.o.c.m.MetadataCreateIndexService] [integTest-0] [consumer] creating index, cause [auto(bulk api)], templates [random_index_template], shards [10]/[0]
+[2025-11-27T09:37:49,082][INFO ][o.o.p.PluginsService     ] [integTest-0] PluginService:onIndexModule index:[consumer/47ZBD-orRBirxzHTWVuXRg]
+[2025-11-27T09:37:49,480][INFO ][o.o.c.r.a.AllocationService] [integTest-0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[consumer][9]]]).
+[2025-11-27T09:37:49,544][INFO ][o.o.p.PluginsService     ] [integTest-0] PluginService:onIndexModule index:[consumer/47ZBD-orRBirxzHTWVuXRg]
+[2025-11-27T09:37:49,549][INFO ][o.o.c.m.MetadataMappingService] [integTest-0] [consumer/47ZBD-orRBirxzHTWVuXRg] create_mapping
+[2025-11-27T09:37:49,680][INFO ][o.o.c.m.Consumer         ] [integTest-0] NOPE
+[2025-11-27T09:37:49,794][INFO ][o.o.c.m.MetadataDeleteIndexService] [integTest-0] [consumer/47ZBD-orRBirxzHTWVuXRg] deleting index
+[2025-11-27T09:37:49,843][INFO ][o.o.c.m.MetadataIndexTemplateService] [integTest-0] removing template [random_index_template]
+[2025-11-27T09:37:49,902][INFO ][o.o.p.PluginsService     ] [integTest-0] PluginService:onIndexModule index:[sQqEj38wQ3Swi-BludVDNg/UifGaDUjQBScvV20O4Bf2w]
+[2025-11-27T09:37:49,903][INFO ][o.o.c.m.MetadataIndexTemplateService] [integTest-0] adding template [random_index_template] for index patterns [*]
+[2025-11-27T09:37:49,937][INFO ][o.o.c.m.Consumer         ] [integTest-0] NOPE
+[2025-11-27T09:37:49,940][INFO ][o.o.p.PluginsService     ] [integTest-0] PluginService:onIndexModule index:[consumer/iFF1dzWuSOmATq4LLjcn6g]
+[2025-11-27T09:37:49,941][INFO ][o.o.c.m.MetadataCreateIndexService] [integTest-0] [consumer] creating index, cause [auto(bulk api)], templates [random_index_template], shards [10]/[0]
+[2025-11-27T09:37:49,958][INFO ][o.o.p.PluginsService     ] [integTest-0] PluginService:onIndexModule index:[consumer/iFF1dzWuSOmATq4LLjcn6g]
+[2025-11-27T09:37:50,167][INFO ][o.o.c.r.a.AllocationService] [integTest-0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[consumer][9]]]).
+[2025-11-27T09:37:50,188][INFO ][o.o.p.PluginsService     ] [integTest-0] PluginService:onIndexModule index:[consumer/iFF1dzWuSOmATq4LLjcn6g]
+[2025-11-27T09:37:50,191][INFO ][o.o.c.m.MetadataMappingService] [integTest-0] [consumer/iFF1dzWuSOmATq4LLjcn6g] create_mapping
+[2025-11-27T09:37:50,256][INFO ][o.o.c.m.MetadataDeleteIndexService] [integTest-0] [consumer/iFF1dzWuSOmATq4LLjcn6g] deleting index
+[2025-11-27T09:37:50,298][INFO ][o.o.c.m.MetadataIndexTemplateService] [integTest-0] removing template [random_index_template]
+[2025-11-27T09:37:50,334][INFO ][o.o.p.PluginsService     ] [integTest-0] PluginService:onIndexModule index:[js5IXPSgQUux-H20PKSYng/G3bMgDhsS0GixfS7r8PlBQ]
+[2025-11-27T09:37:50,336][INFO ][o.o.c.m.MetadataIndexTemplateService] [integTest-0] adding template [random_index_template] for index patterns [*]
+[2025-11-27T09:37:50,362][INFO ][o.o.c.m.Consumer         ] [integTest-0] NOPE
+[2025-11-27T09:37:50,364][INFO ][o.o.p.PluginsService     ] [integTest-0] PluginService:onIndexModule index:[consumer/Kqvlx0KTQkCIUm8wOs8Ksg]
+[2025-11-27T09:37:50,365][INFO ][o.o.c.m.MetadataCreateIndexService] [integTest-0] [consumer] creating index, cause [auto(bulk api)], templates [random_index_template], shards [10]/[0]
+[2025-11-27T09:37:50,381][INFO ][o.o.p.PluginsService     ] [integTest-0] PluginService:onIndexModule index:[consumer/Kqvlx0KTQkCIUm8wOs8Ksg]
+[2025-11-27T09:37:50,576][INFO ][o.o.c.r.a.AllocationService] [integTest-0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[consumer][9]]]).
+[2025-11-27T09:37:50,594][INFO ][o.o.p.PluginsService     ] [integTest-0] PluginService:onIndexModule index:[consumer/Kqvlx0KTQkCIUm8wOs8Ksg]
+[2025-11-27T09:37:50,596][INFO ][o.o.c.m.MetadataMappingService] [integTest-0] [consumer/Kqvlx0KTQkCIUm8wOs8Ksg] create_mapping
+[2025-11-27T09:37:50,654][INFO ][o.o.c.m.MetadataDeleteIndexService] [integTest-0] [consumer/Kqvlx0KTQkCIUm8wOs8Ksg] deleting index
+[2025-11-27T09:37:50,690][INFO ][o.o.c.m.MetadataIndexTemplateService] [integTest-0] removing template [random_index_template]
+[2025-11-27T09:37:50,722][INFO ][o.o.p.PluginsService     ] [integTest-0] PluginService:onIndexModule index:[4M5_RIEfR3mxbOXuX0sJwg/4XP4DDswQ7-DL27zk9EbHA]
+[2025-11-27T09:37:50,724][INFO ][o.o.c.m.MetadataIndexTemplateService] [integTest-0] adding template [random_index_template] for index patterns [*]
+[2025-11-27T09:37:50,768][INFO ][o.o.c.m.MetadataIndexTemplateService] [integTest-0] removing template [random_index_template]
+[2025-11-27T09:37:50,791][INFO ][o.o.c.c.FollowersChecker ] [integTest-0] FollowerChecker{discoveryNode={external_0}{cytHDQAAQACOfJ8FAAAAAA}{tixHYwPFQvyYX-hNpvQxHw}{127.0.0.1}{127.0.0.1:9300}{r}{shard_indexing_pressure_enabled=true}, failureCountSinceLastSuccess=0, [cluster.fault_detection.follower_check.retry_count]=3} disconnected
+[2025-11-27T09:37:50,792][INFO ][o.o.c.c.FollowersChecker ] [integTest-0] FollowerChecker{discoveryNode={external_0}{cytHDQAAQACOfJ8FAAAAAA}{tixHYwPFQvyYX-hNpvQxHw}{127.0.0.1}{127.0.0.1:9300}{r}{shard_indexing_pressure_enabled=true}, failureCountSinceLastSuccess=0, [cluster.fault_detection.follower_check.retry_count]=3} marking node as faulty
+[2025-11-27T09:37:50,793][INFO ][o.o.c.s.ClusterManagerService] [integTest-0] Tasks batched with key: org.opensearch.cluster.coordination.NodeRemovalClusterStateTaskExecutor@3a1d2462, count:1 and sample tasks: node-left[{external_0}{cytHDQAAQACOfJ8FAAAAAA}{tixHYwPFQvyYX-hNpvQxHw}{127.0.0.1}{127.0.0.1:9300}{r}{shard_indexing_pressure_enabled=true} reason: disconnected], term: 1, version: 53, delta: removed {{external_0}{cytHDQAAQACOfJ8FAAAAAA}{tixHYwPFQvyYX-hNpvQxHw}{127.0.0.1}{127.0.0.1:9300}{r}{shard_indexing_pressure_enabled=true}}
+[2025-11-27T09:37:50,799][INFO ][o.o.c.s.ClusterApplierService] [integTest-0] removed {{external_0}{cytHDQAAQACOfJ8FAAAAAA}{tixHYwPFQvyYX-hNpvQxHw}{127.0.0.1}{127.0.0.1:9300}{r}{shard_indexing_pressure_enabled=true}}, term: 1, version: 53, reason: Publication{term=1, version=53}

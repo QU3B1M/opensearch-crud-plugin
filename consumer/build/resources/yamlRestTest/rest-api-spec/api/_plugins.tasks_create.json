@@ -1,0 +1,18 @@
+{
+  "_plugins.consumer_create": {
+    "stability" : "stable",
+    "url": {
+      "paths": [
+        {
+          "path": "/_plugins/consumer",
+          "methods": ["POST"]
+        }
+      ]
+    },
+    "params": {},
+    "body": {
+      "description": "Consumer object to create.{title: string, description: string, status: string[PENDING|IN_PROGRESS|COMPLETED]}",
+      "required": true
+    }
+  }
+}

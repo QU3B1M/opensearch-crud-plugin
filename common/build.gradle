@@ -1,0 +1,184 @@
+/*
+ * Copyright OpenSearch Contributors
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+
+buildscript {
+    ext {
+        opensearch_version = System.getProperty("opensearch.version", "3.2.0-SNAPSHOT")
+    }
+
+    repositories {
+        maven { url "https://ci.opensearch.org/ci/dbc/snapshots/maven/" }
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+        mavenLocal()
+    }
+
+    // dependencies {
+    //     classpath "org.opensearch.gradle:build-tools:${opensearch_version}"
+    // }
+}
+
+//TODO: cleanup gradle config file, some overlap
+plugins {
+    id 'java'
+    id 'io.github.goooler.shadow' version "8.1.7"
+    // id 'jacoco'
+    // id "io.freefair.lombok"
+    // id 'com.diffplug.spotless' version '6.25.0'
+    id 'maven-publish'
+    // id 'signing'
+}
+
+repositories {
+    maven { url "https://ci.opensearch.org/ci/dbc/snapshots/maven/" }
+    mavenCentral()
+    maven { url "https://plugins.gradle.org/m2/" }
+    mavenLocal()
+}
+dependencies {
+    compileOnly group: 'org.opensearch', name: 'opensearch', version: "${opensearch_version}"
+    // compileOnly group: 'org.reflections', name: 'reflections', version: '0.9.12'
+    // testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    // compileOnly "org.opensearch.client:opensearch-rest-client:${opensearch_version}"
+    // compileOnly "org.opensearch:common-utils:${common_utils_version}"
+    // testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.15.2'
+    // testImplementation "org.opensearch.test:framework:${opensearch_version}"
+
+    // compileOnly group: 'org.apache.commons', name: 'commons-text', version: '1.10.0'
+    // compileOnly group: 'com.google.code.gson', name: 'gson', version: '2.11.0'
+    // compileOnly group: 'org.json', name: 'json', version: '20231013'
+    // testImplementation group: 'org.json', name: 'json', version: '20231013'
+    // implementation('com.google.guava:guava:32.1.3-jre') {
+    //     exclude group: 'com.google.guava', module: 'failureaccess'
+    //     exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    //     exclude group: 'org.checkerframework', module: 'checker-qual'
+    //     exclude group: 'com.google.errorprone', module: 'error_prone_annotations'
+    //     exclude group: 'com.google.j2objc', module: 'j2objc-annotations'
+    //     exclude group: 'com.google.guava', module: 'listenablefuture'
+    // }
+    // compileOnly ('com.jayway.jsonpath:json-path:2.9.0') {
+    //     exclude group: 'net.minidev', module: 'json-smart'
+    // }
+    // compileOnly ('net.minidev:json-smart:2.5.2')
+    // compileOnly("com.fasterxml.jackson.core:jackson-annotations:${versions.jackson}")
+    // compileOnly("com.fasterxml.jackson.core:jackson-databind:${versions.jackson_databind}")
+    // compileOnly group: 'com.networknt' , name: 'json-schema-validator', version: '1.4.0'
+    // // Multi-tenant SDK Client
+    // compileOnly "org.opensearch:opensearch-remote-metadata-sdk:${opensearch_build}"
+}
+
+// lombok {
+//     version = "1.18.38"
+// }
+
+// jacocoTestReport {
+//     reports {
+//         xml.getRequired().set(true)
+//         csv.getRequired().set(false)
+//         html.getRequired().set(true)
+//     }
+//
+//     dependsOn test
+// }
+
+// jacocoTestCoverageVerification {
+//     violationRules {
+//         rule {
+//             limit {
+//                 counter = 'LINE'
+//                 minimum = 0.8 //TODO: add more test to meet the coverage bar 0.9
+//             }
+//             limit {
+//                 counter = 'BRANCH'
+//                 minimum = 0.7 //TODO: add more test to meet the coverage bar 0.9
+//             }
+//         }
+//     }
+//     dependsOn jacocoTestReport
+// }
+// check.dependsOn jacocoTestCoverageVerification
+
+// spotless {
+//     java {
+//         removeUnusedImports()
+//         importOrder 'java', 'javax', 'org', 'com'
+//
+//         eclipse().withP2Mirrors(Map.of("https://download.eclipse.org/", "https://mirror.umd.edu/eclipse/")).configFile rootProject.file('.eclipseformat.xml')
+//     }
+// }
+
+shadowJar {
+    destinationDirectory = file("${project.buildDir}/distributions")
+    archiveClassifier.set(null)
+    exclude 'META-INF/maven/com.google.guava/**'
+    exclude 'com/google/thirdparty/**'
+    relocate 'com.google.common', 'org.opensearch.ml.repackage.com.google.common' // dependency of cron-utils
+}
+
+jar {
+    //enabled false
+    enabled true
+}
+
+// task sourcesJar(type: Jar) {
+//     archiveClassifier.set 'sources'
+//     from sourceSets.main.allJava
+// }
+
+// task javadocJar(type: Jar) {
+//     archiveClassifier.set 'javadoc'
+//     from javadoc.destinationDir
+//     dependsOn javadoc
+// }
+
+// publishing {
+//     repositories {
+//         maven {
+//             name = 'staging'
+//             url = "${rootProject.buildDir}/local-staging-repo"
+//         }
+//         maven {
+//             name = "Snapshots" //  optional target repository name
+//             url = "https://central.sonatype.com/repository/maven-snapshots/"
+//             credentials {
+//                 username "$System.env.SONATYPE_USERNAME"
+//                 password "$System.env.SONATYPE_PASSWORD"
+//             }
+//         }
+//     }
+//     publications {
+//         shadow(MavenPublication) { publication ->
+//             project.shadow.component(publication)
+//             artifact sourcesJar
+//             artifact javadocJar
+//
+//             pom {
+//                 name = "OpenSearch ML Commons Comm"
+//                 packaging = "jar"
+//                 url = "https://github.com/opensearch-project/ml-commons"
+//                 description = "OpenSearch ML Common"
+//                 scm {
+//                     connection = "scm:git@github.com:opensearch-project/ml-commons.git"
+//                     developerConnection = "scm:git@github.com:opensearch-project/ml-commons.git"
+//                     url = "git@github.com:opensearch-project/ml-commons.git"
+//                 }
+//                 licenses {
+//                     license {
+//                         name = "The Apache License, Version 2.0"
+//                         url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+//                     }
+//                 }
+//                 developers {
+//                     developer {
+//                         name = "OpenSearch"
+//                         url = "https://github.com/opensearch-project/ml-commons"
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+//publishShadowPublicationToMavenLocal.mustRunAfter shadowJar

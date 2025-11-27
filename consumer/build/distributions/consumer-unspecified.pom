@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ConsumerGroup</groupId>
+  <artifactId>consumer</artifactId>
+  <version>unspecified</version>
+  <packaging>zip</packaging>
+  <name>consumer</name>
+  <description>Custom plugin to manage Consumer</description>
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>OpenSearch</name>
+      <url>https://github.com/opensearch-project/opensearch-plugin-template-java</url>
+    </developer>
+  </developers>
+  <url>https://github.com/QU3B1M/opensearch-crud-plugin</url>
+  <scm>
+    <url>https://github.com/QU3B1M/opensearch-crud-plugin</url>
+  </scm>
+</project>

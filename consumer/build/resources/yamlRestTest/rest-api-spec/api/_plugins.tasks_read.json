@@ -1,0 +1,19 @@
+{
+  "_plugins.consumer_read": {
+    "stability" : "stable",
+    "url": {
+      "paths": [
+        {
+          "path": "/_plugins/consumer/{id}",
+          "methods": ["GET"],
+          "parts": {
+            "id": {
+              "type": "string",
+              "description": "ID of the consumer to retrieve."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

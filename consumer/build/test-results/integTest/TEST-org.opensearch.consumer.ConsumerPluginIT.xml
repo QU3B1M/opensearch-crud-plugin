@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.opensearch.consumer.ConsumerPluginIT" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-11-27T12:37:44" hostname="tyner" time="5.821">
+  <properties/>
+  <testcase name="testConsumerCompleteLifeCycle" classname="org.opensearch.consumer.ConsumerPluginIT" time="4.917"/>
+  <testcase name="testCreateConsumer" classname="org.opensearch.consumer.ConsumerPluginIT" time="0.436"/>
+  <testcase name="testIndexCreated" classname="org.opensearch.consumer.ConsumerPluginIT" time="0.391"/>
+  <testcase name="testPluginInstalled" classname="org.opensearch.consumer.ConsumerPluginIT" time="0.077"/>
+  <system-out><![CDATA[[2025-11-27T14:37:50,784][INFO ][o.o.n.Node               ] [suite] stopping ...
+[2025-11-27T14:37:50,784][DEPRECATION][o.o.d.c.s.Settings       ] [suite] [node.data] setting was deprecated in OpenSearch and will be removed in a future release! See the breaking changes documentation for the next major version.
+[2025-11-27T14:37:50,784][DEPRECATION][o.o.d.c.s.Settings       ] [suite] [node.ingest] setting was deprecated in OpenSearch and will be removed in a future release! See the breaking changes documentation for the next major version.
+[2025-11-27T14:37:50,784][DEPRECATION][o.o.d.c.s.Settings       ] [suite] [node.master] setting was deprecated in OpenSearch and will be removed in a future release! See the breaking changes documentation for the next major version.
+[2025-11-27T14:37:50,789][INFO ][o.o.n.Node               ] [suite] stopped
+[2025-11-27T14:37:50,789][INFO ][o.o.n.Node               ] [suite] closing ...
+[2025-11-27T14:37:50,786][INFO ][o.o.c.c.Coordinator      ] [external_0] cluster-manager node [{integTest-0}{fLvWOsKtQVuYyozhfclnhA}{GyOYsyztQ8uZMu86sd-GdQ}{127.0.0.1}{127.0.0.1:32963}{dimr}{testattr=test, shard_indexing_pressure_enabled=true}] failed, restarting discovery
+org.opensearch.transport.NodeDisconnectedException: [integTest-0][127.0.0.1:32963][disconnected] disconnected
+[2025-11-27T14:37:50,794][INFO ][o.o.n.Node               ] [suite] closed
+]]></system-out>
+  <system-err><![CDATA[Nov 27, 2025 9:37:44 AM org.opensearch.javaagent.bootstrap.AgentPolicy setPolicy
+INFO: Policy attached successfully: org.opensearch.bootstrap.BootstrapForTesting$1@63aadaec
+Nov 27, 2025 9:37:44 AM org.apache.lucene.internal.vectorization.VectorizationProvider lookup
+WARNING: Java vector incubator module is not readable. For optimal vector performance, pass '--add-modules jdk.incubator.vector' to enable Vector API.
+WARNING: A restricted method in java.lang.foreign.Linker has been called
+WARNING: java.lang.foreign.Linker::downcallHandle has been called by the unnamed module
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for this module
+
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+]]></system-err>
+</testsuite>

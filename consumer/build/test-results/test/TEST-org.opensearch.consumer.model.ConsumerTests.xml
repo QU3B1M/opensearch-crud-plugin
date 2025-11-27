@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.opensearch.consumer.model.ConsumerTests" tests="14" skipped="0" failures="0" errors="0" timestamp="2025-11-27T12:38:03" hostname="tyner" time="1.229">
+  <properties/>
+  <testcase name="testConsumerFromXContentWithMissingTitle" classname="org.opensearch.consumer.model.ConsumerTests" time="0.814"/>
+  <testcase name="testConsumerFromXContentWithEmptyContent" classname="org.opensearch.consumer.model.ConsumerTests" time="0.03"/>
+  <testcase name="testHashCode" classname="org.opensearch.consumer.model.ConsumerTests" time="0.031"/>
+  <testcase name="testConsumerFromXContentWithMissingDescription" classname="org.opensearch.consumer.model.ConsumerTests" time="0.03"/>
+  <testcase name="testConsumerDefaultConstructor" classname="org.opensearch.consumer.model.ConsumerTests" time="0.031"/>
+  <testcase name="testConsumerSetters" classname="org.opensearch.consumer.model.ConsumerTests" time="0.041"/>
+  <testcase name="testConsumerCopyConstructor" classname="org.opensearch.consumer.model.ConsumerTests" time="0.026"/>
+  <testcase name="testNotEquals" classname="org.opensearch.consumer.model.ConsumerTests" time="0.035"/>
+  <testcase name="testConsumerConstructor" classname="org.opensearch.consumer.model.ConsumerTests" time="0.034"/>
+  <testcase name="testConsumerToXContent" classname="org.opensearch.consumer.model.ConsumerTests" time="0.036"/>
+  <testcase name="testConsumerFromXContent" classname="org.opensearch.consumer.model.ConsumerTests" time="0.02"/>
+  <testcase name="testConsumerFromXContentWithMissingStatus" classname="org.opensearch.consumer.model.ConsumerTests" time="0.023"/>
+  <testcase name="testToString" classname="org.opensearch.consumer.model.ConsumerTests" time="0.022"/>
+  <testcase name="testEquals" classname="org.opensearch.consumer.model.ConsumerTests" time="0.02"/>
+  <system-out><![CDATA[[2025-11-27T07:38:03,410][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerFromXContentWithMissingTitle] before test
+[2025-11-27T07:38:03,990][INFO ][o.o.c.m.Consumer         ] [testConsumerFromXContentWithMissingTitle] NOPE
+[2025-11-27T07:38:04,144][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerFromXContentWithMissingTitle] after test
+[2025-11-27T07:38:04,212][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerFromXContentWithEmptyContent] before test
+[2025-11-27T07:38:04,215][INFO ][o.o.c.m.Consumer         ] [testConsumerFromXContentWithEmptyContent] NOPE
+[2025-11-27T07:38:04,218][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerFromXContentWithEmptyContent] after test
+[2025-11-27T07:38:04,248][INFO ][o.o.c.m.ConsumerTests    ] [testHashCode] before test
+[2025-11-27T07:38:04,253][INFO ][o.o.c.m.ConsumerTests    ] [testHashCode] after test
+[2025-11-27T07:38:04,278][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerFromXContentWithMissingDescription] before test
+[2025-11-27T07:38:04,287][INFO ][o.o.c.m.Consumer         ] [testConsumerFromXContentWithMissingDescription] NOPE
+[2025-11-27T07:38:04,290][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerFromXContentWithMissingDescription] after test
+[2025-11-27T07:38:04,312][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerDefaultConstructor] before test
+[2025-11-27T07:38:04,319][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerDefaultConstructor] after test
+[2025-11-27T07:38:04,341][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerSetters] before test
+[2025-11-27T07:38:04,357][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerSetters] after test
+[2025-11-27T07:38:04,379][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerCopyConstructor] before test
+[2025-11-27T07:38:04,390][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerCopyConstructor] after test
+[2025-11-27T07:38:04,428][INFO ][o.o.c.m.ConsumerTests    ] [testNotEquals] before test
+[2025-11-27T07:38:04,432][INFO ][o.o.c.m.ConsumerTests    ] [testNotEquals] after test
+[2025-11-27T07:38:04,461][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerConstructor] before test
+[2025-11-27T07:38:04,468][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerConstructor] after test
+[2025-11-27T07:38:04,490][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerToXContent] before test
+[2025-11-27T07:38:04,502][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerToXContent] after test
+[2025-11-27T07:38:04,524][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerFromXContent] before test
+[2025-11-27T07:38:04,528][INFO ][o.o.c.m.Consumer         ] [testConsumerFromXContent] NOPE
+[2025-11-27T07:38:04,536][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerFromXContent] after test
+[2025-11-27T07:38:04,556][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerFromXContentWithMissingStatus] before test
+[2025-11-27T07:38:04,558][INFO ][o.o.c.m.Consumer         ] [testConsumerFromXContentWithMissingStatus] NOPE
+[2025-11-27T07:38:04,560][INFO ][o.o.c.m.ConsumerTests    ] [testConsumerFromXContentWithMissingStatus] after test
+[2025-11-27T07:38:04,572][INFO ][o.o.c.m.ConsumerTests    ] [testToString] before test
+[2025-11-27T07:38:04,575][INFO ][o.o.c.m.ConsumerTests    ] [testToString] after test
+[2025-11-27T07:38:04,594][INFO ][o.o.c.m.ConsumerTests    ] [testEquals] before test
+[2025-11-27T07:38:04,602][INFO ][o.o.c.m.ConsumerTests    ] [testEquals] after test
+]]></system-out>
+  <system-err><![CDATA[Nov 27, 2025 9:38:02 AM org.apache.lucene.internal.vectorization.VectorizationProvider lookup
+WARNING: Java vector incubator module is not readable. For optimal vector performance, pass '--add-modules jdk.incubator.vector' to enable Vector API.
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+]]></system-err>
+</testsuite>

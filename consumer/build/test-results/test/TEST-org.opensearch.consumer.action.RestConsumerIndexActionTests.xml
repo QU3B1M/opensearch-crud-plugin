@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.opensearch.consumer.action.RestConsumerIndexActionTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-11-27T12:38:03" hostname="tyner" time="1.242">
+  <properties/>
+  <testcase name="testIndexRequestWithEmptyStatus" classname="org.opensearch.consumer.action.RestConsumerIndexActionTests" time="1.132"/>
+  <testcase name="testIndexRequestWithEmptyDescription" classname="org.opensearch.consumer.action.RestConsumerIndexActionTests" time="0.03"/>
+  <testcase name="testIndexRequestWithEmptyTitle" classname="org.opensearch.consumer.action.RestConsumerIndexActionTests" time="0.021"/>
+  <testcase name="testIndexRequestWithEmptyDescriptionAndStatus" classname="org.opensearch.consumer.action.RestConsumerIndexActionTests" time="0.026"/>
+  <testcase name="testIndexRequest" classname="org.opensearch.consumer.action.RestConsumerIndexActionTests" time="0.026"/>
+  <system-out><![CDATA[[2025-11-27T15:38:03,394][INFO ][o.o.c.a.RestConsumerIndexActionTests] [testIndexRequestWithEmptyStatus] before test
+[2025-11-27T15:38:04,153][INFO ][o.o.c.m.Consumer         ] [testIndexRequestWithEmptyStatus] NOPE
+[2025-11-27T15:38:04,406][INFO ][o.o.c.a.RestConsumerIndexActionTests] [testIndexRequestWithEmptyStatus] after test
+[2025-11-27T15:38:04,476][INFO ][o.o.c.a.RestConsumerIndexActionTests] [testIndexRequestWithEmptyDescription] before test
+[2025-11-27T15:38:04,483][INFO ][o.o.c.m.Consumer         ] [testIndexRequestWithEmptyDescription] NOPE
+[2025-11-27T15:38:04,494][INFO ][o.o.c.a.RestConsumerIndexActionTests] [testIndexRequestWithEmptyDescription] after test
+[2025-11-27T15:38:04,507][INFO ][o.o.c.a.RestConsumerIndexActionTests] [testIndexRequestWithEmptyTitle] before test
+[2025-11-27T15:38:04,514][INFO ][o.o.c.m.Consumer         ] [testIndexRequestWithEmptyTitle] NOPE
+[2025-11-27T15:38:04,516][INFO ][o.o.c.a.RestConsumerIndexActionTests] [testIndexRequestWithEmptyTitle] after test
+[2025-11-27T15:38:04,528][INFO ][o.o.c.a.RestConsumerIndexActionTests] [testIndexRequestWithEmptyDescriptionAndStatus] before test
+[2025-11-27T15:38:04,543][INFO ][o.o.c.m.Consumer         ] [testIndexRequestWithEmptyDescriptionAndStatus] NOPE
+[2025-11-27T15:38:04,545][INFO ][o.o.c.a.RestConsumerIndexActionTests] [testIndexRequestWithEmptyDescriptionAndStatus] after test
+[2025-11-27T15:38:04,565][INFO ][o.o.c.a.RestConsumerIndexActionTests] [testIndexRequest] before test
+[2025-11-27T15:38:04,570][INFO ][o.o.c.m.Consumer         ] [testIndexRequest] NOPE
+[2025-11-27T15:38:04,572][INFO ][o.o.c.a.RestConsumerIndexActionTests] [testIndexRequest] after test
+]]></system-out>
+  <system-err><![CDATA[Nov 27, 2025 9:38:02 AM org.apache.lucene.internal.vectorization.VectorizationProvider lookup
+WARNING: Java vector incubator module is not readable. For optimal vector performance, pass '--add-modules jdk.incubator.vector' to enable Vector API.
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+]]></system-err>
+</testsuite>
