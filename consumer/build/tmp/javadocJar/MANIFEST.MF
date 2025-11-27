@@ -1,2 +1,20 @@
 Manifest-Version: 1.0
+Module-Origin: https://github.com/QU3B1M/opensearch-crud-plugin
+Change: f894c6b831b30864f3dcf83b0f08553b4c7848cc
+X-Compile-OpenSearch-Version: 3.2.0-SNAPSHOT
+X-Compile-Lucene-Version: 10.2.2
+X-Compile-OpenSearch-Snapshot: true
+Implementation-Title: ConsumerGroup#consumer;unspecified
+Implementation-Version: unspecified
+Built-Status: integration
+Built-By: fede
+Built-OS: Linux
+Build-Timezone: America/Argentina/Buenos_Aires
+Build-Date-UTC: 2025-11-27T13:27:45.874928077Z
+Build-Date: 2025-11-27T13:27:45.872844214Z
+Gradle-Version: 8.10.2
+Created-By: 21.0.7+6-LTS (Amazon.com Inc.)
+X-Compile-Target-JDK: 21
+X-Compile-Source-JDK: 21
+Build-Java-Version: 21
 

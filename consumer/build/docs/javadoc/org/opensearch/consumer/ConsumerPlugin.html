@@ -92,12 +92,12 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/Closeable.html" title="class or interface in java.io" class="external-link">Closeable</a></code>, <code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/AutoCloseable.html" title="class or interface in java.lang" class="external-link">AutoCloseable</a></code>, <code>org.opensearch.plugins.ActionPlugin</code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/Closeable.html" title="class or interface in java.io" class="external-link">Closeable</a></code>, <code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/AutoCloseable.html" title="class or interface in java.lang" class="external-link">AutoCloseable</a></code>, <code>org.opensearch.plugins.ActionPlugin</code>, <code>org.opensearch.plugins.ClusterPlugin</code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">ConsumerPlugin</span>
 <span class="extends-implements">extends org.opensearch.plugins.Plugin
-implements org.opensearch.plugins.ActionPlugin</span></div>
+implements org.opensearch.plugins.ActionPlugin, org.opensearch.plugins.ClusterPlugin</span></div>
 <div class="block">The ConsumerPlugin class registers REST endpoints for OpenSearch.</div>
 </section>
 <section class="summary">
@@ -146,6 +146,9 @@ implements org.opensearch.plugins.ActionPlugin</span></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Registers REST handlers.</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onNodeStarted(org.opensearch.cluster.node.DiscoveryNode)" class="member-name-link">onNodeStarted</a><wbr>(org.opensearch.cluster.node.DiscoveryNode&nbsp;localNode)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -158,6 +161,9 @@ implements org.opensearch.plugins.ActionPlugin</span></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.opensearch.plugins.ActionPlugin">Methods inherited from interface&nbsp;org.opensearch.plugins.ActionPlugin</h3>
 <code>getActionFilters, getActions, getClientActions, getRestHandlerWrapper, getRestHeaders, getTaskHeaders, indicesAliasesRequestValidators, mappingRequestValidators</code></div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-org.opensearch.plugins.ClusterPlugin">Methods inherited from interface&nbsp;org.opensearch.plugins.ClusterPlugin</h3>
+<code>createAllocationDeciders, getExistingShardsAllocators, getIndexNameCustomResolvers, getShardsAllocators, isClusterless, onNodeStarted</code></div>
 </section>
 </li>
 </ul>
@@ -207,6 +213,16 @@ implements org.opensearch.plugins.ActionPlugin</span></div>
 <dd><code>nodesInCluster</code> - Supplier for nodes in cluster</dd>
 <dt>Returns:</dt>
 <dd>List of REST handlers</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="onNodeStarted(org.opensearch.cluster.node.DiscoveryNode)">
+<h3>onNodeStarted</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onNodeStarted</span><wbr><span class="parameters">(org.opensearch.cluster.node.DiscoveryNode&nbsp;localNode)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code>onNodeStarted</code>&nbsp;in interface&nbsp;<code>org.opensearch.plugins.ClusterPlugin</code></dd>
 </dl>
 </section>
 </li>

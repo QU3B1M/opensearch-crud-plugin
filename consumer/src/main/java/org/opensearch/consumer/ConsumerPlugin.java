@@ -7,12 +7,16 @@
  */
 package org.opensearch.consumer;
 
+import com.wazuh.common.transport.CommandRequest;
+import com.wazuh.common.transport.CommandResponse;
 import org.opensearch.cluster.metadata.IndexNameExpressionResolver;
+import org.opensearch.cluster.node.DiscoveryNode;
 import org.opensearch.common.settings.ClusterSettings;
 import org.opensearch.common.settings.IndexScopedSettings;
 import org.opensearch.common.settings.Settings;
 import org.opensearch.common.settings.SettingsFilter;
 import org.opensearch.plugins.ActionPlugin;
+import org.opensearch.plugins.ClusterPlugin;
 import org.opensearch.plugins.Plugin;
 import org.opensearch.rest.RestController;
 import org.opensearch.rest.RestHandler;
@@ -26,7 +30,7 @@ import static java.util.Collections.singletonList;
 /**
  * The ConsumerPlugin class registers REST endpoints for OpenSearch.
  */
-public class ConsumerPlugin extends Plugin implements ActionPlugin {
+public class ConsumerPlugin extends Plugin implements ActionPlugin, ClusterPlugin {
 
     /**
      * Registers REST handlers.
@@ -50,4 +54,10 @@ public class ConsumerPlugin extends Plugin implements ActionPlugin {
                                              final Supplier nodesInCluster) {
         return singletonList(new RestConsumerHandler());
     }
+
+  @Override
+  public void onNodeStarted(DiscoveryNode localNode) {
+      CommandRequest test;
+      CommandResponse bla;
+  }
 }
