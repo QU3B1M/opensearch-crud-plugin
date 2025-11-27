@@ -1,0 +1,22 @@
+"Test consumer deletion - Existent consumer":
+  - do:
+      _plugins.consumer_create:
+        body: { title: test }
+  - do:
+      _plugins.consumer_delete:
+        id: test
+  - match: { result: deleted }
+  - match: { _shards.failed: 0 }
+  - do:
+      _plugins.consumer_read:
+        id: test
+  - match: { found: false }
+
+---
+
+"Test consumer deletion - Non-existent consumer":
+  - do:
+      _plugins.consumer_delete:
+        id: test
+        ignore: 404
+  - match: { status: 404 }

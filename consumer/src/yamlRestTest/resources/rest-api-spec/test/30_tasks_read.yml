@@ -1,0 +1,18 @@
+"Test consumer read - Existent consumer":
+  - do:
+      _plugins.consumer_create:
+        body: { title: test }
+
+  - do:
+      _plugins.consumer_read:
+        id: test
+  - match: { found: true }
+
+---
+
+"Test consumer read - Non-existent consumer":
+  - do:
+      _plugins.consumer_read:
+        id: test
+        ignore: 404
+  - match: { status: 404 }
