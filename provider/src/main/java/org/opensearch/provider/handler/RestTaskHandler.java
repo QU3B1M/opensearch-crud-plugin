@@ -7,6 +7,9 @@
  */
 package org.opensearch.provider.handler;
 
+import com.wazuh.common.transport.CommandRequest;
+import com.wazuh.common.transport.CommandRequestAction;
+import org.opensearch.action.ActionRequest;
 import org.opensearch.action.delete.DeleteRequest;
 import org.opensearch.action.get.GetRequest;
 import org.opensearch.action.index.IndexRequest;

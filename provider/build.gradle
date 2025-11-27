@@ -12,7 +12,7 @@ def pluginName = 'provider'
 def pluginDescription = 'Custom plugin to manage Provider'
 def projectPath = 'org.opensearch'
 def pathToPlugin = 'provider'
-def pluginClassName = 'ProviderPlugin'
+def pluginClassName = 'TasksPlugin'
 group = "ProviderGroup"
 
 java {

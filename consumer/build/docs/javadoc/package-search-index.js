@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.opensearch.consumer"},{"l":"org.opensearch.consumer.action"},{"l":"org.opensearch.consumer.handler"},{"l":"org.opensearch.consumer.model"},{"l":"org.opensearch.consumer.utils"}];updateSearchResults();

@@ -7,6 +7,9 @@
  */
 package org.opensearch.consumer.handler;
 
+import com.wazuh.common.transport.CommandRequest;
+import com.wazuh.common.transport.CommandRequestAction;
+import org.opensearch.action.ActionRequest;
 import org.opensearch.action.delete.DeleteRequest;
 import org.opensearch.action.get.GetRequest;
 import org.opensearch.action.index.IndexRequest;
@@ -75,6 +78,10 @@ public class RestConsumerHandler extends BaseRestHandler {
             switch (request.method()) {
                 case POST:
                     IndexRequest indexRequest = RestConsumerIndexAction.createIndexRequest(request);
+                    String jsonBody = "{\"field\": \"value\"}";
+                    ActionRequest actionRequest = new CommandRequest(jsonBody);
+                    logger.error("CommandRequestAction instance: {}", CommandRequestAction.INSTANCE);
+                    client.execute(CommandRequestAction.INSTANCE, actionRequest);
                     return channel -> client.index(indexRequest, new RestResponseListener<>(channel) {
                         @Override
                         public RestResponse buildResponse(org.opensearch.action.index.IndexResponse response) throws Exception {

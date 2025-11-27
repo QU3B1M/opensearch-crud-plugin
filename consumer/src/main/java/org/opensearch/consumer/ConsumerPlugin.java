@@ -8,22 +8,37 @@
 package org.opensearch.consumer;
 
 import com.wazuh.common.transport.CommandRequest;
+import com.wazuh.common.transport.CommandRequestAction;
 import com.wazuh.common.transport.CommandResponse;
+import java.util.Collection;
+import java.util.Collections;
+import org.opensearch.action.ActionRequest;
 import org.opensearch.cluster.metadata.IndexNameExpressionResolver;
 import org.opensearch.cluster.node.DiscoveryNode;
+import org.opensearch.cluster.service.ClusterService;
 import org.opensearch.common.settings.ClusterSettings;
 import org.opensearch.common.settings.IndexScopedSettings;
 import org.opensearch.common.settings.Settings;
 import org.opensearch.common.settings.SettingsFilter;
+import org.opensearch.core.action.ActionListener;
+import org.opensearch.core.common.io.stream.NamedWriteableRegistry;
+import org.opensearch.core.xcontent.NamedXContentRegistry;
+import org.opensearch.env.Environment;
+import org.opensearch.env.NodeEnvironment;
 import org.opensearch.plugins.ActionPlugin;
 import org.opensearch.plugins.ClusterPlugin;
 import org.opensearch.plugins.Plugin;
+import org.opensearch.repositories.RepositoriesService;
 import org.opensearch.rest.RestController;
 import org.opensearch.rest.RestHandler;
 import org.opensearch.consumer.handler.RestConsumerHandler;
 
 import java.util.List;
 import java.util.function.Supplier;
+import org.opensearch.script.ScriptService;
+import org.opensearch.threadpool.ThreadPool;
+import org.opensearch.transport.client.Client;
+import org.opensearch.watcher.ResourceWatcherService;
 
 import static java.util.Collections.singletonList;
 
@@ -32,7 +47,20 @@ import static java.util.Collections.singletonList;
  */
 public class ConsumerPlugin extends Plugin implements ActionPlugin, ClusterPlugin {
 
-    /**
+  private Client client;
+
+  @Override
+  public Collection<Object> createComponents(Client client, ClusterService clusterService,
+      ThreadPool threadPool, ResourceWatcherService resourceWatcherService,
+      ScriptService scriptService, NamedXContentRegistry xContentRegistry, Environment environment,
+      NodeEnvironment nodeEnvironment, NamedWriteableRegistry namedWriteableRegistry,
+      IndexNameExpressionResolver indexNameExpressionResolver,
+      Supplier<RepositoriesService> repositoriesServiceSupplier) {
+    this.client = client;
+    return Collections.emptyList();
+  }
+
+  /**
      * Registers REST handlers.
      *
      * @param settings OpenSearch settings
@@ -57,7 +85,5 @@ public class ConsumerPlugin extends Plugin implements ActionPlugin, ClusterPlugi
 
   @Override
   public void onNodeStarted(DiscoveryNode localNode) {
-      CommandRequest test;
-      CommandResponse bla;
   }
 }
