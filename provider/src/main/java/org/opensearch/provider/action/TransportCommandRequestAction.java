@@ -33,6 +33,6 @@ public class TransportCommandRequestAction extends HandledTransportAction<Action
   @Override
   protected void doExecute(Task task, ActionRequest request,
       ActionListener<CommandResponse> actionListener) {
-      logger.info("TRANSPORTEANDO");
+      logger.info("Command Received from consumer endpoint");
   }
 }

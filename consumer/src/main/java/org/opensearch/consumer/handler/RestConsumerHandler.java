@@ -44,7 +44,7 @@ public class RestConsumerHandler extends BaseRestHandler {
      */
     @Override
     public List<Route> routes() {
-        return List.of(new Route(POST, BASE_URI));
+        return List.of(new Route(GET, BASE_URI));
     }
 
     /**
@@ -58,7 +58,7 @@ public class RestConsumerHandler extends BaseRestHandler {
     protected RestChannelConsumer prepareRequest(RestRequest request, NodeClient client) {
         try {
             switch (request.method()) {
-                case POST:
+                case GET:
                     String jsonBody = "{\"field\": \"value\"}";
                     ActionRequest actionRequest = new CommandRequest(jsonBody);
                     logger.error("CommandRequestAction instance: {}", CommandRequestAction.INSTANCE);
