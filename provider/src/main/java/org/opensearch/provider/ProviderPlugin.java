@@ -26,7 +26,6 @@ import org.opensearch.plugins.Plugin;
 import org.opensearch.provider.action.TransportCommandRequestAction;
 import org.opensearch.rest.RestController;
 import org.opensearch.rest.RestHandler;
-import org.opensearch.provider.handler.RestTaskHandler;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -36,31 +35,9 @@ import static java.util.Collections.singletonList;
 /**
  * The TasksPlugin class registers REST endpoints for OpenSearch.
  */
-public class TasksPlugin extends Plugin implements ActionPlugin, ClusterPlugin {
+public class ProviderPlugin extends Plugin implements ActionPlugin, ClusterPlugin {
 
-    private static final Logger log = LogManager.getLogger(TasksPlugin.class);
-    /**
-     * Registers REST handlers.
-     *
-     * @param settings OpenSearch settings
-     * @param restController REST controller
-     * @param clusterSettings Cluster settings
-     * @param indexScopedSettings Index scoped settings
-     * @param settingsFilter Settings filter
-     * @param indexNameExpressionResolver Index name expression resolver
-     * @param nodesInCluster Supplier for nodes in cluster
-     * @return List of REST handlers
-     */
-    @Override
-    public List<RestHandler> getRestHandlers(final Settings settings,
-                                             final RestController restController,
-                                             final ClusterSettings clusterSettings,
-                                             final IndexScopedSettings indexScopedSettings,
-                                             final SettingsFilter settingsFilter,
-                                             final IndexNameExpressionResolver indexNameExpressionResolver,
-                                             final Supplier nodesInCluster) {
-        return singletonList(new RestTaskHandler());
-    }
+    private static final Logger log = LogManager.getLogger(ProviderPlugin.class);
 
   @Override
   public List<ActionHandler<? extends ActionRequest, ? extends ActionResponse>> getActions() {
@@ -72,8 +49,6 @@ public class TasksPlugin extends Plugin implements ActionPlugin, ClusterPlugin {
 
   @Override
     public void onNodeStarted(DiscoveryNode localNode) {
-      CommandRequest test;
-      CommandResponse bla;
     }
 
 }

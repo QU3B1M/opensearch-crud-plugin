@@ -10,26 +10,13 @@ package org.opensearch.consumer.handler;
 import com.wazuh.common.transport.CommandRequest;
 import com.wazuh.common.transport.CommandRequestAction;
 import org.opensearch.action.ActionRequest;
-import org.opensearch.action.delete.DeleteRequest;
-import org.opensearch.action.get.GetRequest;
-import org.opensearch.action.index.IndexRequest;
-import org.opensearch.action.update.UpdateRequest;
 import org.opensearch.transport.client.node.NodeClient;
 import org.opensearch.rest.BaseRestHandler;
 import org.opensearch.rest.BytesRestResponse;
 import org.opensearch.rest.RestRequest;
-import org.opensearch.rest.RestResponse;
-import org.opensearch.rest.action.RestResponseListener;
-import org.opensearch.rest.action.RestToXContentListener;
 import org.opensearch.core.rest.RestStatus;
-import org.opensearch.core.xcontent.ToXContent;
-import org.opensearch.consumer.action.RestConsumerDeleteAction;
-import org.opensearch.consumer.action.RestConsumerGetAction;
-import org.opensearch.consumer.action.RestConsumerIndexAction;
-import org.opensearch.consumer.action.RestConsumerUpdateAction;
 
 import java.util.List;
-import java.util.Locale;
 
 import static org.opensearch.rest.RestRequest.Method.*;
 
@@ -57,12 +44,7 @@ public class RestConsumerHandler extends BaseRestHandler {
      */
     @Override
     public List<Route> routes() {
-        return List.of(
-                new Route(POST, BASE_URI),
-                new Route(GET, BASE_URI + "/{id}"),
-                new Route(PUT, BASE_URI + "/{id}"),
-                new Route(DELETE, BASE_URI + "/{id}")
-        );
+        return List.of(new Route(POST, BASE_URI));
     }
 
     /**
@@ -77,43 +59,11 @@ public class RestConsumerHandler extends BaseRestHandler {
         try {
             switch (request.method()) {
                 case POST:
-                    IndexRequest indexRequest = RestConsumerIndexAction.createIndexRequest(request);
                     String jsonBody = "{\"field\": \"value\"}";
                     ActionRequest actionRequest = new CommandRequest(jsonBody);
                     logger.error("CommandRequestAction instance: {}", CommandRequestAction.INSTANCE);
                     client.execute(CommandRequestAction.INSTANCE, actionRequest);
-                    return channel -> client.index(indexRequest, new RestResponseListener<>(channel) {
-                        @Override
-                        public RestResponse buildResponse(org.opensearch.action.index.IndexResponse response) throws Exception {
-                            BytesRestResponse restResponse = new BytesRestResponse(
-                                RestStatus.CREATED,
-                                response.toXContent(channel.newBuilder(), ToXContent.EMPTY_PARAMS)
-                            );
-                            String location = String.format(Locale.ROOT, "%s/%s", BASE_URI, response.getId());
-                            restResponse.addHeader("Location", location);
-                            return restResponse;
-                        }
-                    });
-                case GET:
-                    GetRequest getRequest = RestConsumerGetAction.getRequest(request);
-                    return channel -> client.get(getRequest, new RestToXContentListener<>(channel));
-                case PUT:
-                    UpdateRequest updateRequest = RestConsumerUpdateAction.updateRequest(request);
-                    return channel -> client.update(updateRequest, new RestResponseListener<>(channel) {
-                        @Override
-                        public RestResponse buildResponse(org.opensearch.action.update.UpdateResponse response) throws Exception {
-                            BytesRestResponse restResponse = new BytesRestResponse(
-                                RestStatus.OK,
-                                response.toXContent(channel.newBuilder(), ToXContent.EMPTY_PARAMS)
-                            );
-                            String location = String.format(Locale.ROOT, "%s/%s", BASE_URI, response.getId());
-                            restResponse.addHeader("Location", location);
-                            return restResponse;
-                        }
-                    });
-                case DELETE:
-                    DeleteRequest deleteRequest = RestConsumerDeleteAction.deleteRequest(request);
-                    return channel -> client.delete(deleteRequest, new RestToXContentListener<>(channel));
+                    return channel -> channel.sendResponse(new BytesRestResponse(RestStatus.OK, "Command executed"));
                 default:
                     throw new IllegalArgumentException("Unsupported method: " + request.method());
             }

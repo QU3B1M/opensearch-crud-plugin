@@ -7,12 +7,8 @@
  */
 package org.opensearch.consumer;
 
-import com.wazuh.common.transport.CommandRequest;
-import com.wazuh.common.transport.CommandRequestAction;
-import com.wazuh.common.transport.CommandResponse;
 import java.util.Collection;
 import java.util.Collections;
-import org.opensearch.action.ActionRequest;
 import org.opensearch.cluster.metadata.IndexNameExpressionResolver;
 import org.opensearch.cluster.node.DiscoveryNode;
 import org.opensearch.cluster.service.ClusterService;
@@ -20,7 +16,6 @@ import org.opensearch.common.settings.ClusterSettings;
 import org.opensearch.common.settings.IndexScopedSettings;
 import org.opensearch.common.settings.Settings;
 import org.opensearch.common.settings.SettingsFilter;
-import org.opensearch.core.action.ActionListener;
 import org.opensearch.core.common.io.stream.NamedWriteableRegistry;
 import org.opensearch.core.xcontent.NamedXContentRegistry;
 import org.opensearch.env.Environment;

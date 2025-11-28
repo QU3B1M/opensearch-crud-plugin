@@ -4,7 +4,6 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'opensearch.opensearchplugin'
-apply plugin: 'opensearch.yaml-rest-test'
 apply plugin: 'opensearch.pluginzip'
 apply plugin: 'opensearch.java-agent'
 
@@ -16,8 +15,8 @@ def pluginClassName = 'ConsumerPlugin'
 group = "ConsumerGroup"
 
 java {
-    targetCompatibility = JavaVersion.VERSION_21
-    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_24
+    sourceCompatibility = JavaVersion.VERSION_24
 }
 
 tasks.register("preparePluginPathDirs") {
@@ -26,7 +25,6 @@ tasks.register("preparePluginPathDirs") {
         def newPath = pathToPlugin.replace(".", "/")
         mkdir "src/main/java/org/opensearch/$newPath"
         mkdir "src/test/java/org/opensearch/$newPath"
-        mkdir "src/yamlRestTest/java/org/opensearch/$newPath"
     }
 }
 
@@ -66,6 +64,10 @@ loggerUsageCheck.enabled = false
 
 // No need to validate pom, as we do not upload to maven/sonatype
 validateNebulaPom.enabled = false
+
+tasks.named('thirdPartyAudit') {
+    dependsOn(':common:jar')
+}
 
 buildscript {
     ext {
