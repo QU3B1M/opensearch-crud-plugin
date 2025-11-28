@@ -139,31 +139,35 @@ integTest {
     }
 }
 
+def pluginsDir = file("${buildDir}/run/plugins")
+
+tasks.register('copyProviderPlugin', Copy) {
+    dependsOn(":provider:bundlePlugin")
+    from {
+        project(':provider').tasks.named('bundlePlugin').get().archiveFile
+    }
+    into pluginsDir
+}
 tasks.named("bundlePlugin") {
     dependsOn(":common:build")
     dependsOn(":provider:bundlePlugin")
 }
 
+
 testClusters.integTest {
 
-    def providerZip = file("${buildDir}/run/plugins/provider.zip")
-
-    if (!providerZip.exists()) {
-        throw new GradleException("provider.zip not found at: ${providerZip}")
-    }
-
-    plugin(provider(new Callable<RegularFile>() {
-        @Override
-        RegularFile call() {
-            return new RegularFile() {
-                @Override
-                File getAsFile() {
-                    return providerZip
+        plugin(provider(new Callable<RegularFile>() {
+            @Override
+            RegularFile call() {
+                def providerZip = file("${pluginsDir}/provider.zip")
+                return new RegularFile() {
+                    @Override
+                    File getAsFile() {
+                        return providerZip
+                    }
                 }
             }
-        }
-    }))
-
+        }))
     testDistribution = "INTEG_TEST"
     // This installs our plugin into the testClusters
     plugin(project.tasks.bundlePlugin.archiveFile)
@@ -173,21 +177,14 @@ testClusters.integTest {
 
 }
 
-tasks.named("run").configure {
-
+tasks.named("integTest").configure {
     // Ensure the other plugin is built before starting the cluster
-    dependsOn(":provider:bundlePlugin")
+    dependsOn(copyProviderPlugin)
+}
 
-    doFirst {
-        def pluginsDir = file("${buildDir}/run/plugins")
-
-        // Install plugin-base manually
-        copy {
-            from project(":provider").tasks.named("bundlePlugin")
-                    .get().outputs.files.singleFile
-            into pluginsDir
-        }
-    }
+tasks.named("run").configure {
+    // Ensure the other plugin is built before starting the cluster
+    dependsOn(copyProviderPlugin)
 }
 
 run {
