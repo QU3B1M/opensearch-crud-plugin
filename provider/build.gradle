@@ -19,10 +19,6 @@ java {
     sourceCompatibility = JavaVersion.VERSION_24
 }
 
-tasks.named('thirdPartyAudit') {
-    dependsOn(':common:jar')
-}
-
 tasks.register("preparePluginPathDirs") {
     mustRunAfter clean
     doLast {
