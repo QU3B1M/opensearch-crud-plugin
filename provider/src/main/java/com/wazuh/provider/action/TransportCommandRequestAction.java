@@ -5,7 +5,7 @@
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  */
-package org.opensearch.provider.action;
+package com.wazuh.provider.action;
 
 import com.wazuh.common.transport.CommandRequest;
 import com.wazuh.common.transport.CommandRequestAction;

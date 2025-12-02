@@ -5,13 +5,13 @@
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  */
-package org.opensearch.consumer;
+package com.wazuh.provider;
 
 import com.carrotsearch.randomizedtesting.annotations.ThreadLeakScope;
 import org.opensearch.test.OpenSearchIntegTestCase;
 
-
 @ThreadLeakScope(ThreadLeakScope.Scope.NONE)
 @OpenSearchIntegTestCase.ClusterScope(scope = OpenSearchIntegTestCase.Scope.SUITE)
-public class ConsumerPluginIT extends OpenSearchIntegTestCase {
+public class ProviderPluginIT extends OpenSearchIntegTestCase {
+
 }

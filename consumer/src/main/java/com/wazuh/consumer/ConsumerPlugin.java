@@ -5,7 +5,7 @@
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  */
-package org.opensearch.consumer;
+package com.wazuh.consumer;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -26,7 +26,7 @@ import org.opensearch.plugins.Plugin;
 import org.opensearch.repositories.RepositoriesService;
 import org.opensearch.rest.RestController;
 import org.opensearch.rest.RestHandler;
-import org.opensearch.consumer.handler.RestConsumerHandler;
+import com.wazuh.consumer.handler.RestConsumerHandler;
 
 import java.util.List;
 import java.util.function.Supplier;

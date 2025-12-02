@@ -9,24 +9,11 @@ apply plugin: 'opensearch.java-agent'
 
 def pluginName = 'provider'
 def pluginDescription = 'Custom plugin to manage Provider'
-def projectPath = 'org.opensearch'
+def projectPath = System.getProperty('projectPath', 'com.wazuh')
 def pathToPlugin = 'provider'
 def pluginClassName = 'ProviderPlugin'
-group = "ProviderGroup"
-
-java {
-    targetCompatibility = JavaVersion.VERSION_24
-    sourceCompatibility = JavaVersion.VERSION_24
-}
-
-tasks.register("preparePluginPathDirs") {
-    mustRunAfter clean
-    doLast {
-        def newPath = pathToPlugin.replace(".", "/")
-        mkdir "src/main/java/org/opensearch/$newPath"
-        mkdir "src/test/java/org/opensearch/$newPath"
-    }
-}
+def wazuh_version = System.getProperty('wazuh.version', '5.0.0')
+def revision = System.getProperty('revision', '0')
 
 publishing {
     publications {
@@ -34,6 +21,7 @@ publishing {
             pom {
                 name = pluginName
                 description = pluginDescription
+                version = wazuh_version + "." + revision
                 licenses {
                     license {
                         name = "The Apache License, Version 2.0"
@@ -49,6 +37,13 @@ publishing {
             }
         }
     }
+}
+
+allprojects {
+    group = "${projectPath}"
+    version = "${wazuh_version}" + ".${revision}"
+    targetCompatibility = JavaVersion.VERSION_24
+    sourceCompatibility = JavaVersion.VERSION_24
 }
 
 opensearchplugin {
@@ -93,7 +88,7 @@ dependencies {
     testImplementation "net.bytebuddy:byte-buddy:1.17.5"
     testImplementation "net.bytebuddy:byte-buddy-agent:1.17.5"
     byteBuddyAgent "net.bytebuddy:byte-buddy-agent:1.17.5"
-    implementation project(':common')
+    implementation group: 'com.wazuh', name: 'wazuh-indexer-common', version: "5.0.0.0"
 }
 
 repositories {
@@ -132,6 +127,10 @@ integTest {
     }
 }
 
+tasks.named("dependencyLicenses").configure {
+    enabled = false
+}
+
 testClusters.integTest {
     testDistribution = "INTEG_TEST"
 
@@ -155,6 +154,10 @@ task updateVersion {
         ext.newVersion = System.getProperty('newVersion')
         println "Setting version to ${newVersion}."
         // String tokenization to support -SNAPSHOT
-        ant.replaceregexp(file:'build.gradle', match: '"opensearch.version", "\\d.*"', replace: '"opensearch.version", "' + newVersion.tokenize('-')[0] + '-SNAPSHOT"', flags:'g', byline:true)
+        ant.replaceregexp(file: 'build.gradle', match: '"opensearch.version", "\\d.*"', replace: '"opensearch.version", "' + newVersion.tokenize('-')[0] + '-SNAPSHOT"', flags: 'g', byline: true)
     }
+}
+
+tasks.withType(PublishToMavenLocal).configureEach {
+    onlyIf { publication.name == 'pluginZip' }
 }

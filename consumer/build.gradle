@@ -11,7 +11,7 @@ apply plugin: 'opensearch.java-agent'
 
 def pluginName = 'consumer'
 def pluginDescription = 'Custom plugin to manage Consumer'
-def projectPath = 'org.opensearch'
+def projectPath = 'com.wazuh'
 def pathToPlugin = 'consumer'
 def pluginClassName = 'ConsumerPlugin'
 group = "ConsumerGroup"
@@ -61,15 +61,15 @@ opensearchplugin {
     noticeFile rootProject.file('NOTICE.txt')
 }
 
+configurations {
+    zipArchive
+}
+
 // This requires an additional Jar not published as part of build-tools
 loggerUsageCheck.enabled = false
 
 // No need to validate pom, as we do not upload to maven/sonatype
 validateNebulaPom.enabled = false
-
-tasks.named('thirdPartyAudit') {
-    dependsOn(':common:jar')
-}
 
 buildscript {
     ext {
@@ -99,8 +99,8 @@ dependencies {
     testImplementation "net.bytebuddy:byte-buddy:1.17.5"
     testImplementation "net.bytebuddy:byte-buddy-agent:1.17.5"
     byteBuddyAgent "net.bytebuddy:byte-buddy-agent:1.17.5"
-    implementation project(':common')
-    implementation project(":provider")
+    implementation group: 'com.wazuh', name: 'wazuh-indexer-common', version: "5.0.0.0"
+    zipArchive group: 'com.wazuh', name: 'provider-plugin', version: "5.0.0.0"
 }
 
 repositories {
@@ -139,35 +139,25 @@ integTest {
     }
 }
 
-def pluginsDir = file("${buildDir}/run/plugins")
-
-tasks.register('copyProviderPlugin', Copy) {
-    dependsOn(":provider:bundlePlugin")
-    from {
-        project(':provider').tasks.named('bundlePlugin').get().archiveFile
-    }
-    into pluginsDir
+tasks.named("dependencyLicenses").configure {
+    enabled = false
 }
-tasks.named("bundlePlugin") {
-    dependsOn(":common:build")
-    dependsOn(":provider:bundlePlugin")
-}
-
 
 testClusters.integTest {
-
+    configurations.zipArchive.asFileTree.each {
         plugin(provider(new Callable<RegularFile>() {
             @Override
-            RegularFile call() {
-                def providerZip = file("${pluginsDir}/provider.zip")
+            RegularFile call() throws Exception {
                 return new RegularFile() {
                     @Override
                     File getAsFile() {
-                        return providerZip
+                        return it
                     }
                 }
             }
         }))
+    }
+
     testDistribution = "INTEG_TEST"
     // This installs our plugin into the testClusters
     plugin(project.tasks.bundlePlugin.archiveFile)
@@ -175,16 +165,6 @@ testClusters.integTest {
     systemProperty 'tests.security.manager', 'false'
     systemProperty 'opensearch.set.netty.runtime.available.processors', 'false'
 
-}
-
-tasks.named("integTest").configure {
-    // Ensure the other plugin is built before starting the cluster
-    dependsOn(copyProviderPlugin)
-}
-
-tasks.named("run").configure {
-    // Ensure the other plugin is built before starting the cluster
-    dependsOn(copyProviderPlugin)
 }
 
 run {
@@ -198,6 +178,6 @@ task updateVersion {
         ext.newVersion = System.getProperty('newVersion')
         println "Setting version to ${newVersion}."
         // String tokenization to support -SNAPSHOT
-        ant.replaceregexp(file:'build.gradle', match: '"opensearch.version", "\\d.*"', replace: '"opensearch.version", "' + newVersion.tokenize('-')[0] + '-SNAPSHOT"', flags:'g', byline:true)
+        ant.replaceregexp(file: 'build.gradle', match: '"opensearch.version", "\\d.*"', replace: '"opensearch.version", "' + newVersion.tokenize('-')[0] + '-SNAPSHOT"', flags: 'g', byline: true)
     }
 }

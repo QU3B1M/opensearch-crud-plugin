@@ -5,32 +5,20 @@
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  */
-package org.opensearch.provider;
+package com.wazuh.provider;
 
-import com.wazuh.common.transport.CommandRequest;
 import com.wazuh.common.transport.CommandRequestAction;
-import com.wazuh.common.transport.CommandResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.action.ActionRequest;
-import org.opensearch.cluster.metadata.IndexNameExpressionResolver;
 import org.opensearch.cluster.node.DiscoveryNode;
-import org.opensearch.common.settings.ClusterSettings;
-import org.opensearch.common.settings.IndexScopedSettings;
-import org.opensearch.common.settings.Settings;
-import org.opensearch.common.settings.SettingsFilter;
 import org.opensearch.core.action.ActionResponse;
 import org.opensearch.plugins.ActionPlugin;
 import org.opensearch.plugins.ClusterPlugin;
 import org.opensearch.plugins.Plugin;
-import org.opensearch.provider.action.TransportCommandRequestAction;
-import org.opensearch.rest.RestController;
-import org.opensearch.rest.RestHandler;
+import com.wazuh.provider.action.TransportCommandRequestAction;
 
 import java.util.List;
-import java.util.function.Supplier;
-
-import static java.util.Collections.singletonList;
 
 /**
  * The TasksPlugin class registers REST endpoints for OpenSearch.
