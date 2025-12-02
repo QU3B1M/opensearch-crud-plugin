@@ -14,7 +14,8 @@ def pluginDescription = 'Custom plugin to manage Consumer'
 def projectPath = 'com.wazuh'
 def pathToPlugin = 'consumer'
 def pluginClassName = 'ConsumerPlugin'
-group = "ConsumerGroup"
+def wazuh_version = System.getProperty('wazuh.version', '5.0.0')
+def revision = System.getProperty('revision', '0')
 
 java {
     targetCompatibility = JavaVersion.VERSION_24
@@ -51,6 +52,13 @@ publishing {
             }
         }
     }
+}
+
+allprojects {
+    group = "${projectPath}"
+    version = "${wazuh_version}" + ".${revision}"
+    targetCompatibility = JavaVersion.VERSION_24
+    sourceCompatibility = JavaVersion.VERSION_24
 }
 
 opensearchplugin {
